@@ -7,7 +7,7 @@ export default function App() {
   return (
       <BrowserRouter>
         <Routes>
-          <Route path="/home" element={<Home/>} />
+          <Route path="/timeline" element={<Home/>} />
         </Routes>
       </BrowserRouter>
   );

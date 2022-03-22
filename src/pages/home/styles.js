@@ -5,4 +5,13 @@ export const Container = styled.div`
     min-height: 100vh;
 
     background-color: #333333;
+    padding-top: 125px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
+export const Main = styled.div`
+
 `;
