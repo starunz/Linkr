@@ -22,12 +22,12 @@ const login = (body) => {
     return promisse;
 }
 
-const example = (body ,token) => {
+/*const example = (body ,token) => {
     const configAuth = config(token)
     const promise = api.post('/checkout', body, configAuth)
 
     return promise;
-}
+}*/
 
 export {
     signUp,
