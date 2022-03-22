@@ -7,7 +7,7 @@ import Input from "../../components/Input";
 
 import * as api from "../../services/api";
 import { ThreeDots } from "react-loader-spinner";
-// import Swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 function SignUp() {
   const [isLoading, setIsLoading] = useState(false);
@@ -33,8 +33,35 @@ function SignUp() {
       navigate("/");
     } catch (error) {
       setIsLoading(false);
-      console.log(error); 
-      return;
+      if (error.response.status === 422) {
+        setFormData({
+            email: '',
+            password: '',
+        });
+
+        Swal.fire({
+            icon: 'error',
+            title: "OOPS...",
+            text: 'Todos os campos precisam ser preenchidos, confira seus dados',
+        });
+
+        return;
+      }
+
+      if (error.response.status === 409) {
+        setFormData({
+            email: '',
+            password: '',
+        });
+
+        Swal.fire({
+            icon: 'error',
+            title: "OOPS...",
+            text: 'Esse email já existe, confira seus dados',
+        });
+
+        return;
+      }
     }
   }
 

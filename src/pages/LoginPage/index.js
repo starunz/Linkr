@@ -48,7 +48,7 @@ function Login() {
           setIsLoading(false);
 
           login(promisse.data);
-          navigate('/');
+          navigate('/timeline');
           console.log('entrei')
       }
       catch (error) {
