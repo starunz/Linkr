@@ -20,7 +20,7 @@ const Main = styled.div`
   padding-left: 10%;
 `;
 
-const Form = styled.div`
+const Form = styled.form`
   min-height: 100vh;
   width: 35%;
   position: fixed;

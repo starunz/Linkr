@@ -3,17 +3,30 @@ import Home from "./pages/home";
 import Login from "./pages/LoginPage";
 import SignUp from "./pages/SignUpPage";
 
+import ResetStyle from "./components/styles/resetStyle";
+import GlobalStyle from "./components/styles/globalStyle";
+import { AuthProvider } from "./contexts/AuthContext";
+
+import Login from "./pages/LoginPage";
+import SignUp from "./pages/SignUpPage";
 
 
-export default function App() {
+const App = () => {
+    return (
+        <AuthProvider>
+            <ResetStyle />
+            <GlobalStyle />
 
-  return (
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/timeline" element={<Home/>} />
-        </Routes>
-      </BrowserRouter>
-  );
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Login />} />
+                    <Route path="/sign-up" element={<SignUp />} />
+                    <Route path="/timeline" element={<Home/>} />
+                </Routes>
+            </BrowserRouter>
+        </AuthProvider >
+
+    );
 }
+
+export default App;

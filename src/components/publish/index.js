@@ -7,9 +7,9 @@ export default function Publish() {
             <Image />
             <Form>
                 <span>What are you going to share today?</span>
-                <input />
-                <textarea />
-                <Button />
+                <input placeholder="http://..."/>
+                <textarea placeholder="Awesome article about #javascript"/>
+                <Button>Publish</Button>
             </Form>
         </Container>
     );

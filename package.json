@@ -7,10 +7,14 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
+<<<<<<< HEAD
+=======
+    "react-loader-spinner": "^6.0.0-0",
+>>>>>>> b41156febce6412b5a46bf7b0ce26e368c7fbdff
     "react-router-dom": "^6.2.2",
     "react-scripts": "^4.0.3",
-    "react-use-effect": "^0.0.1",
-    "styled-components": "^5.3.3"
+    "styled-components": "^5.3.3",
+    "sweetalert2": "^11.4.6"
   },
   "scripts": {
     "start": "react-scripts start",
