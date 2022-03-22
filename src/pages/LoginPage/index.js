@@ -1,6 +1,14 @@
 import { useState } from "react";
 import Input from "../../components/Input";
-import { Container, Main, Title, Description, Form, Button,StyledLink } from "./style";
+import {
+  Container,
+  Main,
+  Title,
+  Description,
+  Form,
+  Button,
+  StyledLink,
+} from "./style";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -23,13 +31,13 @@ function Login() {
           placeholder="e-mail"
         />
         <Input
-          type="text"
+          type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           name="password"
           placeholder="password"
         />
-        <Button type='submit'>Log In</Button>
+        <Button type="submit">Log In</Button>
         <StyledLink to="/sign-up">First time? Create an account!</StyledLink>
       </Form>
     </Container>

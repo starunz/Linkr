@@ -7,7 +7,7 @@ const Container = styled.div`
   display: flex;
   font-weight: bold;
 `;
-const Main = styled.div`
+const Main = styled.main`
   width: 65%;
   height: 100%;
   background-color: #151515;
@@ -20,7 +20,7 @@ const Main = styled.div`
   padding-left: 10%;
 `;
 
-const Form = styled.div`
+const Form = styled.form`
   min-height: 100vh;
   width: 35%;
   position: fixed;
@@ -75,17 +75,17 @@ const Description = styled.div`
 `;
 
 const Button = styled.button`
-    width: 80%;
-    height: 65px;
-    background: #1877F2;
-    color: #FFFFFF;
-    border-radius: 6px;
-    cursor: pointer;
-  
-    font-size: 20px;
-    font-weight: bold;
-    font-family: 'Oswald';
-    border: none;
+  width: 80%;
+  height: 65px;
+  background: #1877f2;
+  color: #ffffff;
+  border-radius: 6px;
+  cursor: pointer;
+
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "Oswald";
+  border: none;
 `;
 
 export { Container, StyledLink, Form, Main, Description, Title, Button };

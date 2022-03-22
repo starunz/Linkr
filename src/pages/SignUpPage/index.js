@@ -1,12 +1,32 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Input from "../../components/Input";
-import { Container, Main, Title, Description, Form, Button,StyledLink } from "./style";
+import {
+  Container,
+  Main,
+  Title,
+  Description,
+  Form,
+  Button,
+  StyledLink,
+} from "./style";
 
 function SignUp() {
-  const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
-	const [name, setName] = useState('');
-	const [imgUrl, setImgUrl] = useState('');
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    username: "",
+    photoUrl: "",
+  });
+
+  function handleSubmit({target}) {
+    setFormData({ ...formData, [target.username]: target.value });
+  }
+
+
+
+
   return (
     <Container>
       <Main>
@@ -18,37 +38,37 @@ function SignUp() {
       <Form>
         <Input
           type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={formData.email}
+          onChange={(e) => handleSubmit(e)}
           name="email"
           placeholder="e-mail"
         />
         <Input
-          type="text"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          type="password"
+          value={formData.password}
+          onChange={(e) => handleSubmit(e)}
           name="password"
           placeholder="password"
         />
-                <Input
+        <Input
           type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={formData.username}
+          onChange={(e) => handleSubmit(e)}
           name="name"
           placeholder="username"
         />
         <Input
-          type="text"
-          value={imgUrl}
-          onChange={(e) => setImgUrl(e.target.value)}
+          type="url"
+          value={formData.photoUrl}
+          onChange={(e) => handleSubmit(e)}
           name="imgUrl"
           placeholder="picture url"
         />
-        <Button type='submit'>Sign Up</Button>
+        <Button type="submit">Sign Up</Button>
         <StyledLink to="/">Switch back to log in</StyledLink>
       </Form>
     </Container>
-  )
+  );
 }
 
-export default SignUp
+export default SignUp;
