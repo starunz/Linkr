@@ -7,7 +7,7 @@ const Container = styled.div`
   display: flex;
   font-weight: bold;
 `;
-const Main = styled.div`
+const Main = styled.main`
   width: 65%;
   height: 100%;
   background-color: #151515;
@@ -74,18 +74,5 @@ const Description = styled.div`
   color: #ffffff;
 `;
 
-const Button = styled.button`
-    width: 80%;
-    height: 65px;
-    background: #1877F2;
-    color: #FFFFFF;
-    border-radius: 6px;
-    cursor: pointer;
-  
-    font-size: 20px;
-    font-weight: bold;
-    font-family: 'Oswald';
-    border: none;
-`;
 
-export { Container, StyledLink, Form, Main, Description, Title, Button };
+export { Container, StyledLink, Form, Main, Description, Title };
