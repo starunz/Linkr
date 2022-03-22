@@ -30,7 +30,7 @@ function Login() {
           placeholder="password"
         />
         <Button type='submit'>Log In</Button>
-        <StyledLink to="/">First time? Create an account!</StyledLink>
+        <StyledLink to="/sign-up">First time? Create an account!</StyledLink>
       </Form>
     </Container>
   );
