@@ -1,31 +1,42 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { Container, Main, Title, Description, Form, StyledLink } from "./style";
+import Button from "../../components/Button";
 import Input from "../../components/Input";
-import {
-  Container,
-  Main,
-  Title,
-  Description,
-  Form,
-  Button,
-  StyledLink,
-} from "./style";
+
+import * as api from "../../services/api";
+import { ThreeDots } from "react-loader-spinner";
+// import Swal from 'sweetalert2';
 
 function SignUp() {
-  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
     username: "",
     photoUrl: "",
   });
+  const navigate = useNavigate();
 
-  function handleSubmit({target}) {
-    setFormData({ ...formData, [target.username]: target.value });
+  function handleChange({ target }) {
+    setFormData({ ...formData, [target.name]: target.value });
   }
 
-
-
+  async function handleSubmit(e) {
+    e.preventDefault();
+    console.log(formData)
+    setIsLoading(true);
+    try {
+      await api.signUp({ ...formData });
+      setIsLoading(false);
+      navigate("/");
+    } catch (error) {
+      setIsLoading(false);
+      console.log(error); 
+      return;
+    }
+  }
 
   return (
     <Container>
@@ -35,36 +46,50 @@ function SignUp() {
           save, share and discover the best links on the web
         </Description>
       </Main>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Input
           type="text"
           value={formData.email}
-          onChange={(e) => handleSubmit(e)}
+          onChange={(e) => handleChange(e)}
           name="email"
           placeholder="e-mail"
+          disabled={isLoading}
+          required
         />
         <Input
           type="password"
           value={formData.password}
-          onChange={(e) => handleSubmit(e)}
+          onChange={(e) => handleChange(e)}
           name="password"
           placeholder="password"
+          disabled={isLoading}
+          required
         />
         <Input
           type="text"
           value={formData.username}
-          onChange={(e) => handleSubmit(e)}
-          name="name"
+          onChange={(e) => handleChange(e)}
+          name="username"
           placeholder="username"
+          disabled={isLoading}
+          required
         />
         <Input
           type="url"
           value={formData.photoUrl}
-          onChange={(e) => handleSubmit(e)}
-          name="imgUrl"
+          onChange={(e) => handleChange(e)}
+          name="photoUrl"
           placeholder="picture url"
+          disabled={isLoading}
+          required
         />
-        <Button type="submit">Sign Up</Button>
+        <Button type="submit" disabled={isLoading}>
+          {isLoading ? (
+            <ThreeDots color="#FFFFFF" height={50} width={50} />
+          ) : (
+            "Sign Up"
+          )}
+        </Button>
         <StyledLink to="/">Switch back to log in</StyledLink>
       </Form>
     </Container>

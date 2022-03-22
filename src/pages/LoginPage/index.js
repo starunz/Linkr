@@ -8,7 +8,6 @@ import {
   Title,
   Description,
   Form,
-  Button,
   StyledLink,
 } from "./style";
 
@@ -18,6 +17,7 @@ import useAuth from '../../hooks/useAuth';
 import { ThreeDots } from 'react-loader-spinner';
 
 import Swal from 'sweetalert2';
+import Button from '../../components/Button';
 
 function Login() {
   const [signInData, setSignInData] = useState({ email: '', password: '' });
@@ -48,7 +48,7 @@ function Login() {
           setIsLoading(false);
 
           login(promisse.data);
-          navigate('/sign-up');
+          navigate('/');
           console.log('entrei')
       }
       catch (error) {
