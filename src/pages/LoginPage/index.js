@@ -20,11 +20,11 @@ function Login() {
   const navigate = useNavigate();
 
   useEffect(() => {
-      if (auth && auth.token) {
-          navigate('/sign-up');
-      }
+    if (auth && auth.token) {
+      navigate('/sign-up');
+    }
 
-      // eslint-disable-next-line 
+    // eslint-disable-next-line 
   }, []);
 
   function handleChange(e) {
@@ -37,46 +37,44 @@ function Login() {
       setIsLoading(true);
 
       try {
-          const promisse = await api.login({ ...signInData });
-          setIsLoading(false);
+        const promisse = await api.login({ ...signInData });
+        setIsLoading(false);
 
-          login(promisse.data);
-          navigate('/sign-up');
-          console.log('entrei')
+        login(promisse.data);
+        navigate('/sign-up');
       }
       catch (error) {
-          setIsLoading(false);
+        setIsLoading(false);
 
-          console.log('entrei no erro', error)
-          if (error.response.status === 422) {
-            setSignInData({
-                email: '',
-                password: '',
-            });
+        if (error.response.status === 422) {
+          setSignInData({
+            email: '',
+            password: '',
+          });
 
-            Swal.fire({
-                icon: 'error',
-                title: "OOPS...",
-                text: 'Insira os dados corretamente, por favor.',
-            });
+          Swal.fire({
+            icon: 'error',
+            title: "OOPS...",
+            text: 'Insira os dados corretamente, por favor.',
+          });
 
-            return;
-          }
+          return;
+        }
 
-          if (error.response.status === 401) {
-            setSignInData({
-                email: '',
-                password: '',
-            });
+        if (error.response.status === 401) {
+          setSignInData({
+            email: '',
+            password: '',
+          });
 
-            Swal.fire({
-                icon: 'error',
-                title: "OOPS...",
-                text: 'Email e/ou senha incorretos, insira os dados corretamente, por favor.',
-            });
+          Swal.fire({
+            icon: 'error',
+            title: "OOPS...",
+            text: 'Email e/ou senha incorretos, insira os dados corretamente, por favor.',
+          });
 
-            return;
-          }
+          return;
+        }
       }
   }
 
