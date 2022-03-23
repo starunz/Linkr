@@ -34,8 +34,6 @@ function SignUp() {
 
     } catch (error) {
 
-        console.log(error);
-
       setIsLoading(false);
       if (error.response.status === 422) {
         setFormData({

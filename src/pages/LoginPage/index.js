@@ -11,7 +11,7 @@ import {
   StyledLink,
 } from "./style";
 
-import * as api from '../../services/api'
+import * as api from '../../services/api';
 import useAuth from '../../hooks/useAuth';
 
 import { ThreeDots } from 'react-loader-spinner';
@@ -48,13 +48,12 @@ function Login() {
           setIsLoading(false);
 
           login(promisse.data);
+          console.log(promisse.data);
           navigate('/timeline');
-          console.log('entrei')
       }
       catch (error) {
           setIsLoading(false);
 
-          console.log('entrei no erro', error)
           if (error.response.status === 422) {
             setSignInData({
                 email: '',
