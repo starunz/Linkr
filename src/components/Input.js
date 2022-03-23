@@ -9,6 +9,7 @@ const Input = styled.input`
     border-radius: 6px;
     margin-bottom: 13px;
     padding-left: 12px;
+    border: none;
     
     font-size: 20px;
     font-weight: bold;

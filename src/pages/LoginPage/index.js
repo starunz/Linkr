@@ -2,8 +2,14 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Input from "../../components/Input";
-
-import { Container, Main, Title, Description, Form, Button,StyledLink } from "./style";
+import {
+  Container,
+  Main,
+  Title,
+  Description,
+  Form,
+  StyledLink,
+} from "./style";
 
 import * as api from '../../services/api'
 import useAuth from '../../hooks/useAuth';
@@ -11,6 +17,7 @@ import useAuth from '../../hooks/useAuth';
 import { ThreeDots } from 'react-loader-spinner';
 
 import Swal from 'sweetalert2';
+import Button from '../../components/Button';
 
 function Login() {
   const [signInData, setSignInData] = useState({ email: '', password: '' });
@@ -41,7 +48,7 @@ function Login() {
           setIsLoading(false);
 
           login(promisse.data);
-          navigate('/sign-up');
+          navigate('/timeline');
           console.log('entrei')
       }
       catch (error) {

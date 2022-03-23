@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const api = axios.create({baseURL: 'https://linkr-bltml.herokuapp.com' })
+const api = axios.create({baseURL: 'https://localhost:4000' });
 
 const config = (token) => {
     return {
@@ -11,13 +11,13 @@ const config = (token) => {
 }
 
 const signUp = (body) => {
-    const promisse = api.post('/sign-up', body)
+    const promisse = api.post('/sign-up', body);
 
     return promisse;
 }
 
 const login = (body) => {
-    const promisse = api.post('/login', body)
+    const promisse = api.post('/login', body);
 
     return promisse;
 }

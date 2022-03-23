@@ -5,6 +5,8 @@ import SignUp from "./pages/SignUpPage";
 
 import ResetStyle from "./components/styles/resetStyle";
 import GlobalStyle from "./components/styles/globalStyle";
+
+
 import { AuthProvider } from "./contexts/AuthContext";
 
 
@@ -13,7 +15,6 @@ const App = () => {
         <AuthProvider>
             <ResetStyle />
             <GlobalStyle />
-
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Login />} />
