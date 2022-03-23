@@ -7,9 +7,6 @@ import ResetStyle from "./components/styles/resetStyle";
 import GlobalStyle from "./components/styles/globalStyle";
 import { AuthProvider } from "./contexts/AuthContext";
 
-import Login from "./pages/LoginPage";
-import SignUp from "./pages/SignUpPage";
-
 
 const App = () => {
     return (
