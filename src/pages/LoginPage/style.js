@@ -52,6 +52,12 @@ const Form = styled.form`
     height: 75%;
     z-index: 3;
   }
+  @media (max-width: 480px) {
+    padding-top: 55%;
+  }
+  @media (max-width: 380px) {
+    padding-top: 65%;
+  }
 `;
 
 const StyledLink = styled(Link)`
@@ -90,6 +96,10 @@ const Title = styled.p`
     font-size: 85px;
     line-height: 67px;
   }
+  @media (max-width: 380px) {
+    font-size: 76px;
+    line-height: 64px;
+  }
 `;
 
 const Description = styled.div`
@@ -110,6 +120,9 @@ const Description = styled.div`
     text-align: center;
     width: unset;
     max-width: 240px;
+  }
+  @media (max-width: 380px) {
+    line-height: 34px;
   }
 `;
 
