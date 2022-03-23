@@ -2,10 +2,15 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const Container = styled.div`
-  width: 100%;
   height: 100vh;
-  display: flex;
+  width: 100%;
   font-weight: bold;
+
+  display: flex;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
 `;
 const Main = styled.main`
   width: 65%;
@@ -18,19 +23,33 @@ const Main = styled.main`
   justify-content: center;
   align-items: flex-start;
   padding-left: 10%;
+
+  @media (max-width: 600px) {
+    width: 100%;
+    height: 25%;
+    z-index: 5;
+    align-items: center;
+    padding-left: 0px;
+    padding-bottom: 30px;
+  }
 `;
 
 const Form = styled.form`
   min-height: 100vh;
   width: 35%;
-  position: fixed;
-  right: 0;
-
   background-color: #333333;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 600px) {
+    justify-content: flex-start;
+    padding-top: 10%;
+    width: 100%;
+    height: 75%;
+    z-index: 3;
+  }
 `;
 
 const StyledLink = styled(Link)`
@@ -48,6 +67,10 @@ const StyledLink = styled(Link)`
 
   text-decoration-line: underline;
   color: #ffffff;
+
+  @media (max-width: 600px) {
+    padding-top: 5%;
+  }
 `;
 
 const Title = styled.p`
@@ -59,6 +82,12 @@ const Title = styled.p`
   letter-spacing: 0.05em;
 
   color: #ffffff;
+
+  @media (max-width: 600px) {
+    margin-top: 20px;
+    font-size: 85px;
+    line-height: 67px;
+  }
 `;
 
 const Description = styled.div`
@@ -72,8 +101,13 @@ const Description = styled.div`
   width: 80%;
 
   color: #ffffff;
+
+  @media (max-width: 600px) {
+    font-size: 23px;
+    text-align: center;
+    width: unset;
+    max-width: 240px;
+  }
 `;
-
-
 
 export { Container, StyledLink, Form, Main, Description, Title };

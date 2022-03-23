@@ -123,7 +123,7 @@ function Login() {
           )}
         </Button>
 
-        <StyledLink to="/sign-up">First time? Create an account!</StyledLink>
+        <StyledLink to="/sign-up">First time? Create an account!!</StyledLink>
       </Form>
     </Container>
   );
