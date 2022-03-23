@@ -12,6 +12,10 @@ const Button = styled.button`
   font-weight: bold;
   font-family: "Oswald";
   border: none;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export default Button;
