@@ -13,7 +13,6 @@ const App = () => {
         <AuthProvider>
             <ResetStyle />
             <GlobalStyle />
-
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Login />} />
