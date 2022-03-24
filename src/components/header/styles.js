@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { IoChevronDownSharp } from "react-icons/io5";
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
     width: 100vw;
@@ -16,17 +17,17 @@ export const Container = styled.div`
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 10;
+    z-index: 1;
+
 
     @media (max-width: 635px){
         p, span {
             font-size: 45px;
         }
-        //padding-left: 17px;
     }
 `;
 
-export const Logo = styled.span`
+export const Logo = styled(Link)`
     color: #FFFFFF;
 
     font-family: 'Passion One';
@@ -84,7 +85,7 @@ export const ChevronIcon = styled(IoChevronDownSharp )`
 
 export const QuickAccess= styled.div`
     width: 135px;
-    height: 43px;
+    height: 47px;
 
     background-color: #171717;
 
