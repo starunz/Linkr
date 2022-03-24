@@ -26,11 +26,14 @@ function SignUp() {
   async function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
+
     try {
       await api.signUp({ ...formData });
       setIsLoading(false);
       navigate("/");
+
     } catch (error) {
+
       setIsLoading(false);
       if (error.response.status === 422) {
         setFormData({

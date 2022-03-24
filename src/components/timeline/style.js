@@ -7,3 +7,14 @@ export const Container = styled.div`
     flex-direction: column;
 `;
 
+export const Message = styled.span`
+    align-self: center;
+
+    font-size: 26px;
+`;
+
+export const Load = styled.div`
+    align-self: center;
+    display: flex;
+`;
+
