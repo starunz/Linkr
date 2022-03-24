@@ -12,6 +12,7 @@ const config = (token) => {
 
 const signUp = (body) => {
     const promise = api.post('/sign-up', body);
+
     return promise;
 }
 
@@ -27,7 +28,6 @@ const getUserData = (data) => {
 
 const publishPost = ({token, publishData, id}) => {
     const body = {userId: id, ...publishData};
-
     const promise = api.post('/posts', body, config(token));
     return promise;
 }
