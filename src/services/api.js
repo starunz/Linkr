@@ -27,8 +27,13 @@ const getUserData = (data) => {
 
 const publishPost = ({token, publishData, id}) => {
     const body = {userId: id, ...publishData};
-    
+
     const promise = api.post('/posts', body, config(token));
+    return promise;
+}
+
+const getPosts = () => {
+    const promise = api.get('/posts');
     return promise;
 }
 
@@ -44,4 +49,5 @@ export {
     login,
     getUserData,
     publishPost,
+    getPosts,
 }

@@ -42,7 +42,6 @@ export default function Publish() {
 
             <Form onSubmit={e => publish(e)}>
                 <span>What are you going to share today?</span>
-
                 <input 
                     type="text"
                     placeholder="http://..."
@@ -52,7 +51,6 @@ export default function Publish() {
                     disabled={isLoading}
                     required
                 />
-
                 <textarea 
                     text="text"
                     placeholder="Awesome article about #javascript"
@@ -61,7 +59,6 @@ export default function Publish() {
                     value={publishData.description}
                     disabled={isLoading}
                 />
-
                 <Button disabled={isLoading} type="submit" >
                     {isLoading? "publishing..." : "Publish"}
                 </Button>
