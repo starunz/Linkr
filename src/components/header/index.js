@@ -2,10 +2,15 @@ import { Container, Logo, Input, ImageUser, ChevronIcon, QuickAccess } from "./s
 
 import { useState, useRef, useEffect } from "react";
 
+import useAuth from "../../hooks/useAuth";
+import { Link } from "react-router-dom";
+
 export default function Header() {
     const [quickAccess, setQuickAccess] = useState(false);
 
     let ref = useRef();
+
+    const { logoff } = useAuth();
 
     useEffect(() => {
         function OutsideClick(e) {
@@ -36,8 +41,10 @@ export default function Header() {
                 size="30px"
             />
 
-            <QuickAccess ref={ref} display={quickAccess ? "inherit" : "none"}>
-                <span>Logout</span>
+            <QuickAccess to="#" ref={ref} display={quickAccess ? "inherit" : "none"}>
+                <Link to="/">
+                    <span onClick={() => logoff()} >Logout</span>
+                </Link>
             </QuickAccess>
         </Container>
     );
