@@ -49,7 +49,6 @@ function Login() {
 
           login(promisse.data);
           navigate('/timeline');
-          console.log('entrei')
       }
       catch (error) {
         setIsLoading(false);
