@@ -19,13 +19,6 @@ const Container = styled.div`
     top: 0;
     left: 0;
     z-index: 1;
-
-
-    @media (max-width: 635px){
-        p, span {
-            font-size: 45px;
-        }
-    }
 `;
 
 const Logo = styled(Link)`
@@ -40,6 +33,11 @@ const Logo = styled(Link)`
     :hover {
         color: #1877f2;
         cursor: pointer;
+    }
+
+    @media (max-width: 635px){
+        font-size: 45px;
+        line-height: 50px;
     }
 `;
 

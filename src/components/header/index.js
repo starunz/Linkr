@@ -60,5 +60,3 @@ export default function Header() {
         </Container>
     );
 }
-
-//<Input placeholder="Search for people"/>
