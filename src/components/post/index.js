@@ -9,11 +9,10 @@ import {
     TitleLink, 
     MainLink, 
     TextLink, 
-    ImageLink,
-    Hashtag
+    ImageLink
 } from "./style";
-import { Link, useParams } from "react-router-dom";
 import ReactHashtag from "@mdnm/react-hashtag";
+import Hashtag from "../hashtag";
 
 export default function Post({post}) {
 
@@ -27,7 +26,7 @@ export default function Post({post}) {
                 <Title>{post.author}</Title>
                 <Text>
                 <ReactHashtag
-                    renderHashtag={(hashtagValue) => <Link to={`/hashtag/${hashtagValue.substr(1)}`}><Hashtag>{hashtagValue}</Hashtag></Link>}
+                    renderHashtag={(hashtagValue) => <Hashtag hashtagName={hashtagValue}/>}
                 >
                     {post.description}
                 </ReactHashtag>

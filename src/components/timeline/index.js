@@ -16,7 +16,6 @@ export default function Timeline() {
 
         promise.then(response => {
             let posts = response.data;
-            console.log(posts);
             if(hashtag)
             posts = posts.filter(p => {return p.description.indexOf(`#${hashtag}`) > 0});
             setPosts(posts);
