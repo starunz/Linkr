@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
 import { IoChevronDownSharp } from "react-icons/io5";
+
 import { Link } from 'react-router-dom';
 
-export const Container = styled.div`
+const Container = styled.div`
     width: 100vw;
     height: 72px;
 
@@ -27,7 +28,7 @@ export const Container = styled.div`
     }
 `;
 
-export const Logo = styled(Link)`
+const Logo = styled(Link)`
     color: #FFFFFF;
 
     font-family: 'Passion One';
@@ -42,13 +43,18 @@ export const Logo = styled(Link)`
     }
 `;
 
-export const Input = styled.input`
+const Input = styled.input`
     width: 40vw;
     height: 45px;
 
     background: #FFFFFF;
+
     border-radius: 8px;
     border: none;
+
+    padding-left: 17px;
+
+    outline: none;
 
     &::placeholder {
         font-family: 'Lato';
@@ -59,7 +65,7 @@ export const Input = styled.input`
     }
 `;
 
-export const ImageUser = styled.img`
+const ImageUser = styled.img`
     width: 53px;
     height: 53px;
 
@@ -67,7 +73,7 @@ export const ImageUser = styled.img`
     border-radius: 50%;
 `;
 
-export const ChevronIcon = styled(IoChevronDownSharp )`
+const ChevronIcon = styled(IoChevronDownSharp )`
     position: absolute;
 
     right: 85px;
@@ -83,7 +89,7 @@ export const ChevronIcon = styled(IoChevronDownSharp )`
     }
 `
 
-export const QuickAccess= styled.div`
+const QuickAccess= styled.div`
     width: 135px;
     height: 47px;
 
@@ -116,3 +122,12 @@ export const QuickAccess= styled.div`
         color: #1877f2;
     }
 `
+
+export {
+    Container,
+    Logo,
+    Input,
+    ImageUser,
+    ChevronIcon,
+    QuickAccess,
+}

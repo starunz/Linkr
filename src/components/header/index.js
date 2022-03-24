@@ -1,4 +1,11 @@
-import { Container, Logo, Input, ImageUser, ChevronIcon, QuickAccess } from "./styles";
+import { 
+    Container,
+    Logo, 
+    ImageUser, 
+    ChevronIcon, 
+    QuickAccess,
+    Input,
+} from "./styles";
 
 import { useState, useRef, useEffect } from "react";
 
@@ -29,7 +36,11 @@ export default function Header() {
     return(
         <Container ref={ref}>
             <Logo to="/timeline">Linkr</Logo>
-                        
+
+            <Input 
+                placeholder="Search for people and friends"
+            />
+
             <ImageUser 
                 onClick={() => setQuickAccess(!quickAccess)}
                 alt="profile picture"
