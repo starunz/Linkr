@@ -28,7 +28,7 @@ function Login() {
 
   useEffect(() => {
       if (auth && auth.token) {
-          navigate('/sign-up');
+          navigate('/timeline');
       }
 
       // eslint-disable-next-line 
