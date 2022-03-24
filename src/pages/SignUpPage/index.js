@@ -25,7 +25,6 @@ function SignUp() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log(formData)
     setIsLoading(true);
     try {
       await api.signUp({ ...formData });

@@ -44,10 +44,10 @@ function Login() {
       setIsLoading(true);
 
       try {
-          const promisse = await api.login({ ...signInData });
+          const promise = await api.login({ ...signInData });
           setIsLoading(false);
 
-          login(promisse.data);
+          login(promise.data);
           navigate('/timeline');
           console.log('entrei')
       }

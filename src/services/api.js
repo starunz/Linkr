@@ -11,15 +11,15 @@ const config = (token) => {
 }
 
 const signUp = (body) => {
-    const promisse = api.post('/sign-up', body)
+    const promise = api.post('/sign-up', body)
 
-    return promisse;
+    return promise;
 }
 
 const login = (body) => {
-    const promisse = api.post('/login', body)
+    const promise = api.post('/login', body)
 
-    return promisse;
+    return promise;
 }
 
 /*const example = (body ,token) => {
