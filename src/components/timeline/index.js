@@ -5,7 +5,6 @@ import * as api from '../../services/api';
 import Post from "../post";
 import { ThreeDots } from 'react-loader-spinner';
 import { useParams } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
 
 export default function Timeline() {
 
