@@ -10,9 +10,13 @@ import {
     TitleLink, 
     MainLink, 
     TextLink, 
-    ImageLink 
+    ImageLink
 } from "./style";
+
 import { Load } from "../timeline/style";
+
+import ReactHashtag from "@mdnm/react-hashtag";
+import Hashtag from "../hashtag";
 
 import { FiHeart } from 'react-icons/fi';
 import { FaHeart } from 'react-icons/fa';
@@ -56,13 +60,19 @@ export default function Post({ post, postId }) {
 
             <Main>
                 <Title>{post.author}</Title>
-                <Text>{post.description}</Text>
+                <Text>
+                <ReactHashtag
+                    renderHashtag={(hashtagValue) => <Hashtag hashtagName={hashtagValue}/>}
+                >
+                    {post.description}
+                </ReactHashtag>
+                </Text>
 
                 <LinkContainer href={post.link} target="_blank">
                     <MainLink>
                         <TitleLink>{post.linkTitle}</TitleLink>
                         <TextLink>
-                            {post.linkDescription}
+                              {post.linkDescription}
                             <br /> <br /> 
                             {post.link}
                         </TextLink>
