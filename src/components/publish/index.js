@@ -4,13 +4,14 @@ import { Button, Container, Form, Image } from "./style";
 import * as api from '../../services/api';
 import Swal from 'sweetalert2';
 
+import { useParams } from "react-router-dom";
 export default function Publish() {
 
     const {auth} = useAuth();
     const [userData, setUserData] = useState({});
     const [publishData, setPublishData] = useState({link: '', description: ''}); 
     const [isLoading, setIsLoading] = useState(false);
-
+    const { hashtag } = useParams();
     useEffect(() => {
         const promise = api.getUserData(auth);
         promise.then(response => {
@@ -43,6 +44,8 @@ export default function Publish() {
     }
 
     return(
+        !hashtag && 
+        ( 
         <Container>
             <Image src={userData.photoUrl}/>
 
@@ -71,5 +74,6 @@ export default function Publish() {
             </Form>
 
         </Container>
+        )
     );
 }

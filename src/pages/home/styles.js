@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    width: 100vw;
+    width: 100%;
     max-width: 100%;
     min-height: 100vh;
 
@@ -19,4 +19,9 @@ export const Container = styled.div`
 
 export const Main = styled.div`
     max-width: 100%;
+
+    padding-bottom: 50px;
+    gap: 25px;
+    
+    display: flex;
 `;

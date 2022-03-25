@@ -13,6 +13,8 @@ import {
     NotImage,
 } from "./style";
 import { AiOutlineFileImage } from 'react-icons/ai';
+import ReactHashtag from "@mdnm/react-hashtag";
+import Hashtag from "../hashtag";
 
 export default function Post({post}) {
 
@@ -25,6 +27,12 @@ export default function Post({post}) {
             <Main>
                 <Title>{post.author}</Title>
                 <Text>{post.description}</Text>
+                    <ReactHashtag
+                        renderHashtag={(hashtagValue) => <Hashtag hashtagName={hashtagValue}/>}
+                    >
+                        {post.description}
+                    </ReactHashtag>
+
                 <LinkContainer href={post.link} target="_blank">
 
                     <MainLink>
