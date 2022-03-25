@@ -37,6 +37,20 @@ const getPosts = () => {
     return promise;
 }
 
+const likePost = (postId, userId, token) => {
+    const body = {
+        postId,
+        userId
+    };
+    const promise = api.post('/like', body, config(token));
+    return promise;
+}
+
+const getLikes = (postId, token) => {
+    const promise = api.get(`/like/${postId}`, config(token));
+    return promise;
+}
+
 /*const example = (body ,token) => {
     const configAuth = config(token)
     const promise = api.post('/checkout', body, configAuth)
@@ -50,4 +64,6 @@ export {
     getUserData,
     publishPost,
     getPosts,
+    likePost,
+    getLikes
 }
