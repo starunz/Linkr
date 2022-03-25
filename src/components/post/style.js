@@ -22,9 +22,20 @@ export const ImageUser = styled.img`
     width: 50px;
     height: 50px;
 
+    margin-bottom: 20px;
+
     border-radius: 26.5px;
 
     object-fit: cover;
+`;
+
+export const TotalLikes = styled.div`
+    font-family: 'Lato';
+    font-size: 11px;
+    
+    margin-top: 5px;
+
+    color: #fff;
 `;
 
 export const Main = styled.div`

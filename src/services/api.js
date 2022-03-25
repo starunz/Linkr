@@ -37,6 +37,20 @@ const getPosts = () => {
     return promise;
 }
 
+const likePost = (postId, userId, token) => {
+    const body = {
+        postId,
+        userId
+    };
+    const promise = api.post('/like', body, config(token));
+    return promise;
+}
+
+const getLikes = (postId, token) => {
+    const promise = api.get(`/like/${postId}`, config(token));
+    return promise;
+}
+
 const getTrendingHashtags = () => {
     const promise = api.get('/hashtags/trending');
     return promise;
@@ -55,5 +69,7 @@ export {
     getUserData,
     publishPost,
     getPosts,
+    likePost,
+    getLikes,
     getTrendingHashtags
 }
