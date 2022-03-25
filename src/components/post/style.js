@@ -23,6 +23,8 @@ export const ImageUser = styled.img`
     height: 50px;
 
     border-radius: 26.5px;
+
+    object-fit: cover;
 `;
 
 export const Main = styled.div`

@@ -15,7 +15,7 @@ import ReactHashtag from "@mdnm/react-hashtag";
 import Hashtag from "../hashtag";
 
 export default function Post({post}) {
-
+    console.log(post)
     return(
         <Container>
             <ImageLikeContainer>
