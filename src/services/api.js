@@ -22,7 +22,7 @@ const login = (body) => {
 }
 
 const getUserData = (data) => {
-    const promise = api.get(`users/${data.id}`, config(data.token));
+    const promise = api.get(`/users/${data.id}`, config(data.token));
     return promise;
 }
 
@@ -34,6 +34,20 @@ const publishPost = ({token, publishData, id}) => {
 
 const getPosts = () => {
     const promise = api.get('/posts');
+    return promise;
+}
+
+const likePost = (postId, userId, token) => {
+    const body = {
+        postId,
+        userId
+    };
+    const promise = api.post('/like', body, config(token));
+    return promise;
+}
+
+const getLikes = (postId, token) => {
+    const promise = api.get(`/like/${postId}`, config(token));
     return promise;
 }
 
@@ -55,5 +69,7 @@ export {
     getUserData,
     publishPost,
     getPosts,
+    likePost,
+    getLikes,
     getTrendingHashtags
 }

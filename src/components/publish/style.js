@@ -25,9 +25,13 @@ export const Image = styled.img`
 
     border-radius: 50%;
 
+<<<<<<< HEAD
     @media (max-width: 610px) {
         display: none;
     }
+=======
+    object-fit: cover;
+>>>>>>> 025245199eda23f9e74aa165574bd50d85f1df68
 `;
 
 export const Form = styled.form`

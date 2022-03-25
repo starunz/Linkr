@@ -29,11 +29,23 @@ export const ImageUser = styled.img`
     height: 50px;
 
     border-radius: 50%;
+    margin-bottom: 20px;
+    border-radius: 26.5px;
+    object-fit: cover;
 
     @media (max-width: 610px) {
         width: 40px;
         height: 40px;
     }
+`;
+
+export const TotalLikes = styled.div`
+    font-family: 'Lato';
+    font-size: 11px;
+    
+    margin-top: 5px;
+
+    color: #fff;
 `;
 
 export const Main = styled.div`
@@ -166,4 +178,10 @@ export const Hashtag = styled.span`
   color: white;
   font-size: 22px;
   font-weight: bold
+`;
+
+export const Icon = styled.div`
+    &:hover {
+        cursor: pointer;
+    }
 `;

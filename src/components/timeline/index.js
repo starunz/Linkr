@@ -5,11 +5,14 @@ import * as api from '../../services/api';
 import Post from "../post";
 import { ThreeDots } from 'react-loader-spinner';
 import { useParams } from "react-router-dom";
+import Swal from 'sweetalert2';
+
 export default function Timeline() {
 
     const [posts, setPosts] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const { hashtag } = useParams();
+
     useEffect(() => {
         setIsLoading(true);
         const promise = api.getPosts();
@@ -21,7 +24,11 @@ export default function Timeline() {
             setPosts(posts);
             setIsLoading(false);
         }).catch(error => {
-            alert("An error occured while trying to fetch the posts, please refresh the page");
+            Swal.fire({
+                icon: 'error',
+                title: "OOPS...",
+                text: 'An error occured while trying to fetch the posts, please refresh the page',
+              });
             setIsLoading(false);
         });
     }, [hashtag]);
