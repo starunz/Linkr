@@ -11,6 +11,10 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @media (max-width: 610px) {
+        padding-top: 91px;
+    }
 `;
 
 export const Main = styled.div`

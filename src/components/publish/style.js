@@ -12,6 +12,11 @@ export const Container = styled.div`
     gap: 18px;
 
     display: flex;
+
+    @media (max-width: 610px) {
+        border-radius: 0px;
+        gap: 14px;
+    }
 `;
 
 export const Image = styled.img`
@@ -19,6 +24,10 @@ export const Image = styled.img`
     height: 50px;
 
     border-radius: 50%;
+
+    @media (max-width: 610px) {
+        display: none;
+    }
 `;
 
 export const Form = styled.form`
@@ -35,6 +44,12 @@ export const Form = styled.form`
         line-height: 24px;
 
         color: #707070;
+
+        @media (max-width: 610px) {
+            font-size: 17px;
+            line-height: 20px;
+            text-align: center;
+        }
     }
 
     input {
@@ -54,7 +69,14 @@ export const Form = styled.form`
             line-height: 18px;
 
             color: #949494;
+
+            @media (max-width: 610px) {
+                    font-size: 13px;
+                    line-height: 16px;
+            }
         }
+
+
     }
 
     textarea {
@@ -74,6 +96,11 @@ export const Form = styled.form`
             line-height: 18px;
 
             color: #949494;
+
+            @media (max-width: 610px) {
+                    font-size: 13px;
+                    line-height: 16px;
+            }
         }
     }
 `;
@@ -90,10 +117,15 @@ export const Button = styled.button`
     ${props => props.disabled && 'opacity: 0.5;'}
 
     font-family: 'Lato';
-    font-style: normal;
     font-weight: 700;
     font-size: 14px;
     line-height: 17px;
+
+    @media (max-width: 610px) {
+        height: 22px;
+        font-size: 13px;
+        line-height: 16px;
+    }
 
     &:hover {
         cursor: pointer;
