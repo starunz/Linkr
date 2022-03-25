@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
     width: 611px;
+    max-width: 100%;
     height: 209px;
 
     background: #FFFFFF;
@@ -13,6 +14,11 @@ export const Container = styled.div`
     gap: 18px;
 
     display: flex;
+
+    @media (max-width: 610px) {
+        border-radius: 0px;
+        gap: 14px;
+    }
 `;
 
 export const Image = styled(Link)`
@@ -21,7 +27,13 @@ export const Image = styled(Link)`
 
     border-radius: 50%;
 
+<<<<<<< HEAD
+    @media (max-width: 610px) {
+        display: none;
+    }
+=======
     object-fit: cover;
+>>>>>>> 025245199eda23f9e74aa165574bd50d85f1df68
 `;
 
 export const Form = styled.form`
@@ -38,6 +50,12 @@ export const Form = styled.form`
         line-height: 24px;
 
         color: #707070;
+
+        @media (max-width: 610px) {
+            font-size: 17px;
+            line-height: 20px;
+            text-align: center;
+        }
     }
 
     input {
@@ -57,7 +75,14 @@ export const Form = styled.form`
             line-height: 18px;
 
             color: #949494;
+
+            @media (max-width: 610px) {
+                    font-size: 13px;
+                    line-height: 16px;
+            }
         }
+
+
     }
 
     textarea {
@@ -77,6 +102,11 @@ export const Form = styled.form`
             line-height: 18px;
 
             color: #949494;
+
+            @media (max-width: 610px) {
+                    font-size: 13px;
+                    line-height: 16px;
+            }
         }
     }
 `;
@@ -90,10 +120,20 @@ export const Button = styled.button`
     background: #1877F2;
     border-radius: 5px;
     color: #FFFFFF;
+    ${props => props.disabled && 'opacity: 0.5;'}
 
     font-family: 'Lato';
-    font-style: normal;
     font-weight: 700;
     font-size: 14px;
     line-height: 17px;
+
+    @media (max-width: 610px) {
+        height: 22px;
+        font-size: 13px;
+        line-height: 16px;
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
 `;

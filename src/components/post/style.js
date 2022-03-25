@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     width: 611px;
+    max-width: 100%;
 
     background: #171717;
     border-radius: 16px;
@@ -9,6 +10,11 @@ export const Container = styled.div`
     gap: 18px;
 
     display: flex;
+
+    @media (max-width: 610px) {
+        border-radius: 0px;
+        gap: 14px;
+    }
 `;
 
 export const ImageLikeContainer = styled.div`
@@ -22,11 +28,15 @@ export const ImageUser = styled.img`
     width: 50px;
     height: 50px;
 
+    border-radius: 50%;
     margin-bottom: 20px;
-
     border-radius: 26.5px;
-
     object-fit: cover;
+    
+    @media (max-width: 610px) {
+        width: 40px;
+        height: 40px;
+    }
 
     cursor: pointer;
 `;
@@ -41,6 +51,7 @@ export const TotalLikes = styled.div`
 `;
 
 export const Main = styled.div`
+    margin: auto;
     gap: 8px;
 
     display: flex;
@@ -48,7 +59,6 @@ export const Main = styled.div`
 `;
 
 export const Title = styled.div`
-    width: 502px;
     height: 23px;
 
     font-family: 'Lato';
@@ -56,6 +66,11 @@ export const Title = styled.div`
     line-height: 23px;
 
     color: #FFFFFF;
+
+    @media (max-width: 610px) {
+        font-size: 17px;
+        line-height: 20px;
+    }
 `;
 
 export const Text = styled.span`
@@ -66,10 +81,16 @@ export const Text = styled.span`
     line-height: 20px;
 
     color: #B7B7B7;
+
+    @media (max-width: 610px) {
+        font-size: 15px;
+        line-height: 18px;
+    }
 `;
 
 export const LinkContainer = styled.a`
-    width: 503px;
+    width: 100%;
+    max-width: 100%;
 
     border: 1px solid #4D4D4D;
     box-sizing: border-box;
@@ -79,10 +100,39 @@ export const LinkContainer = styled.a`
 `;
 
 export const ImageLink = styled.img`
-    width: 200px;
-    height: 100%;
+    width: 155px;
 
     border-radius: 0px 12px 13px 0px;
+
+    @media (max-width: 610px) {
+        width: 95px;
+    }
+`;
+
+export const NotImage = styled.div`
+    min-width: 155px;
+    min-height: 100%;
+
+    border-radius: 0px 12px 13px 0px;
+    gap: 10px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    span {
+        font-family: 'Lato';
+        font-size: 16px;
+        line-height: 19px;
+        word-break: break-all;
+
+        color: #CECECE;
+    }
+
+    @media (max-width: 610px) {
+        min-width: 95px;
+    }
 `;
 
 export const MainLink = styled.div`
@@ -91,6 +141,10 @@ export const MainLink = styled.div`
 
     display: flex;
     flex-direction: column;
+
+    @media (max-width: 610px) {
+        padding: 7px 11px 8px 11px;
+    }
 `;
 
 export const TitleLink = styled.span`
@@ -100,6 +154,11 @@ export const TitleLink = styled.span`
     word-break: break-all;
 
     color: #CECECE;
+
+    @media (max-width: 610px) {
+        font-size: 11px;
+        line-height: 13px;
+    }
 `;
 
 export const TextLink = styled.span`
@@ -109,6 +168,11 @@ export const TextLink = styled.span`
     word-break: break-all;
 
     color: #CECECE;
+
+    @media (max-width: 610px) {
+        font-size: 9px;
+        line-height: 11px;   
+    }
 `;
 
 export const Hashtag = styled.span`
@@ -116,4 +180,10 @@ export const Hashtag = styled.span`
   color: white;
   font-size: 22px;
   font-weight: bold
+`;
+
+export const Icon = styled.div`
+    &:hover {
+        cursor: pointer;
+    }
 `;

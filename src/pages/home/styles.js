@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     width: 100%;
+    max-width: 100%;
     min-height: 100vh;
 
     background-color: #333333;
@@ -10,10 +11,17 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 50px;
+
+    @media (max-width: 610px) {
+        padding-top: 91px;
+    }
 `;
 
 export const Main = styled.div`
-    display: flex;
+    max-width: 100%;
+
+    padding-bottom: 50px;
     gap: 25px;
+    
+    display: flex;
 `;
