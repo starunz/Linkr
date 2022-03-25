@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const api = axios.create({baseURL: 'http://localhost:5000/' });
+const api = axios.create({baseURL: 'http://localhost:5000' });
 
 const config = (token) => {
     return {
@@ -22,7 +22,7 @@ const login = (body) => {
 }
 
 const getUserData = (data) => {
-    const promise = api.get(`users/${data.id}`, config(data.token));
+    const promise = api.get(`/users/${data.id}`, config(data.token));
     return promise;
 }
 
@@ -34,6 +34,11 @@ const publishPost = ({token, publishData, id}) => {
 
 const getPosts = () => {
     const promise = api.get('/posts');
+    return promise;
+}
+
+const getTrendingHashtags = () => {
+    const promise = api.get('/hashtags/trending');
     return promise;
 }
 
@@ -50,4 +55,5 @@ export {
     getUserData,
     publishPost,
     getPosts,
+    getTrendingHashtags
 }

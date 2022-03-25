@@ -18,7 +18,8 @@ const App = () => {
                 <Routes>
                     <Route path="/" element={<Login />} />
                     <Route path="/sign-up" element={<SignUp />} />
-                    <Route path="/timeline" element={<Home />} />
+                    <Route path="/timeline" element={<Home/>} />
+                    <Route path="/hashtag/:hashtag" element={<Home/>} />
                 </Routes>
             </BrowserRouter>
         </AuthProvider >

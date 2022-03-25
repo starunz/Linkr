@@ -4,24 +4,27 @@ import { Container, Load, Message } from "./style";
 import * as api from '../../services/api';
 import Post from "../post";
 import { ThreeDots } from 'react-loader-spinner';
-
+import { useParams } from "react-router-dom";
 export default function Timeline() {
 
     const [posts, setPosts] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-
+    const { hashtag } = useParams();
     useEffect(() => {
         setIsLoading(true);
         const promise = api.getPosts();
 
         promise.then(response => {
-            setPosts(response.data);
+            let posts = response.data;
+            if(hashtag)
+            posts = posts.filter(p => {return p.description.indexOf(`#${hashtag}`) > 0});
+            setPosts(posts);
             setIsLoading(false);
         }).catch(error => {
             alert("An error occured while trying to fetch the posts, please refresh the page");
             setIsLoading(false);
         });
-    }, []);
+    }, [hashtag]);
 
     return(
         <Container>
