@@ -13,12 +13,13 @@ export const Container = styled.div`
     display: flex;
 `;
 
-export const Image = styled.div`
+export const Image = styled.img`
     width: 50px;
     height: 50px;
 
     border-radius: 50%;
-    background-color: red;
+
+    object-fit: cover;
 `;
 
 export const Form = styled.form`
@@ -43,6 +44,18 @@ export const Form = styled.form`
 
         background: #EFEFEF;
         border-radius: 5px;
+
+        &::placeholder {
+            padding-left: 13px;
+            
+            font-family: 'Lato';
+            font-style: normal;
+            font-weight: 300;
+            font-size: 15px;
+            line-height: 18px;
+
+            color: #949494;
+        }
     }
 
     textarea {
@@ -51,6 +64,18 @@ export const Form = styled.form`
 
         background: #EFEFEF;
         border-radius: 5px;
+        border: none;
+
+        &::placeholder {
+            padding-left: 13px;
+
+            font-family: 'Lato';
+            font-weight: 300;
+            font-size: 15px;
+            line-height: 18px;
+
+            color: #949494;
+        }
     }
 `;
 
@@ -62,4 +87,11 @@ export const Button = styled.button`
 
     background: #1877F2;
     border-radius: 5px;
+    color: #FFFFFF;
+
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
 `;

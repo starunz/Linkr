@@ -69,6 +69,8 @@ const ImageUser = styled.img`
 
     background-color: red;
     border-radius: 50%;
+
+    object-fit: cover;
 `;
 
 const ChevronIcon = styled(IoChevronDownSharp )`

@@ -12,12 +12,15 @@ import { useState, useRef, useEffect } from "react";
 import useAuth from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
 
+import * as api from '../../services/api'
+
 export default function Header() {
     const [quickAccess, setQuickAccess] = useState(false);
+    const [userData, setUserData] = useState({});
 
     let ref = useRef();
 
-    const { logoff } = useAuth();
+    const { logoff, auth } = useAuth();
 
     useEffect(() => {
         function OutsideClick(e) {
@@ -33,6 +36,13 @@ export default function Header() {
         }
     }, [quickAccess]);
 
+    useEffect(() => {
+        const promise = api.getUserData(auth);
+        promise.then(response => {
+            setUserData(response.data);
+        });
+    }, [auth]);
+
     return(
         <Container ref={ref}>
             <Logo to="/timeline">Linkr</Logo>
@@ -42,6 +52,7 @@ export default function Header() {
             />
 
             <ImageUser 
+                src={userData.photoUrl}
                 onClick={() => setQuickAccess(!quickAccess)}
                 alt="profile picture"
             />

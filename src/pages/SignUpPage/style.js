@@ -88,6 +88,11 @@ const Title = styled.p`
     font-size: 85px;
     line-height: 67px;
   }
+  @media (max-width: 380px) {
+    margin-top: 20px;
+    font-size: 76px;
+    line-height: 64px;
+  }
 `;
 
 const Description = styled.div`
@@ -107,6 +112,13 @@ const Description = styled.div`
     text-align: center;
     width: unset;
     max-width: 240px;
+  }
+  @media (max-width: 380px) {
+    font-size: 22px;
+    text-align: center;
+    width: unset;
+    max-width: 240px;
+    line-height: 34px;
   }
 `;
 

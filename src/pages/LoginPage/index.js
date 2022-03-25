@@ -11,7 +11,7 @@ import {
   StyledLink,
 } from "./style";
 
-import * as api from '../../services/api'
+import * as api from '../../services/api';
 import useAuth from '../../hooks/useAuth';
 
 import { ThreeDots } from 'react-loader-spinner';
