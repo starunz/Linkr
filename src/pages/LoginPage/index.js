@@ -48,7 +48,6 @@ function Login() {
           setIsLoading(false);
 
           login(promisse.data);
-          console.log(promisse.data);
           navigate('/timeline');
       }
       catch (error) {

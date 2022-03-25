@@ -64,10 +64,32 @@ export const LinkContainer = styled.a`
 `;
 
 export const ImageLink = styled.img`
-    width: 200px;
+    width: 155px;
     height: 100%;
 
     border-radius: 0px 12px 13px 0px;
+`;
+
+export const NotImage = styled.div`
+    min-width: 155px;
+    min-height: 100%;
+
+    border-radius: 0px 12px 13px 0px;
+    gap: 10px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    span {
+        font-family: 'Lato';
+        font-size: 16px;
+        line-height: 19px;
+        word-break: break-all;
+
+        color: #CECECE;
+    }
 `;
 
 export const MainLink = styled.div`

@@ -86,10 +86,15 @@ export const Button = styled.button`
     background: #1877F2;
     border-radius: 5px;
     color: #FFFFFF;
+    ${props => props.disabled && 'opacity: 0.5;'}
 
     font-family: 'Lato';
     font-style: normal;
     font-weight: 700;
     font-size: 14px;
     line-height: 17px;
+
+    &:hover {
+        cursor: pointer;
+    }
 `;

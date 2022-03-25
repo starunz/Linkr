@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { Button, Container, Form, Image } from "./style";
 import * as api from '../../services/api';
+import Swal from 'sweetalert2';
 
 export default function Publish() {
 
@@ -26,8 +27,13 @@ export default function Publish() {
             setIsLoading(false);
             setPublishData({link:'', description:''});
             window.location.reload();
+            
         }).catch(error => {
-            alert(error.message);
+            Swal.fire({
+                icon: 'error',
+                title: "OOPS...",
+                text: 'Email e/ou senha incorretos, insira os dados corretamente, por favor.',
+            });
             setIsLoading(false);
         });
     }
