@@ -97,6 +97,7 @@ export const TextLink = styled.span`
 `;
 
 export const Hashtag = styled.span`
+  font-family: 'Lato';
   color: white;
   font-size: 22px;
   font-weight: bold

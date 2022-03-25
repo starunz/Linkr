@@ -37,6 +37,11 @@ const getPosts = () => {
     return promise;
 }
 
+const getTrendingHashtags = () => {
+    const promise = api.get('/hashtags/trending');
+    return promise;
+}
+
 /*const example = (body ,token) => {
     const configAuth = config(token)
     const promise = api.post('/checkout', body, configAuth)
@@ -50,4 +55,5 @@ export {
     getUserData,
     publishPost,
     getPosts,
+    getTrendingHashtags
 }
