@@ -50,6 +50,8 @@ export default function Post({ post, postId }) {
         return <Load><ThreeDots color="#FFFFFF" height={50} width={50} /></Load>
     }
 
+export default function Post({post}) {
+
     return(
         <Container>
             <ImageLikeContainer>

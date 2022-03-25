@@ -18,6 +18,8 @@ export const Image = styled.img`
     height: 50px;
 
     border-radius: 50%;
+
+    object-fit: cover;
 `;
 
 export const Form = styled.form`

@@ -6,7 +6,6 @@ import SignUp from "./pages/SignUpPage";
 import ResetStyle from "./components/styles/resetStyle";
 import GlobalStyle from "./components/styles/globalStyle";
 
-
 import { AuthProvider } from "./contexts/AuthContext";
 
 

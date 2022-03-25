@@ -25,6 +25,8 @@ export const ImageUser = styled.img`
     margin-bottom: 20px;
 
     border-radius: 26.5px;
+
+    object-fit: cover;
 `;
 
 export const TotalLikes = styled.div`
