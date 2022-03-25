@@ -25,10 +25,12 @@ import { ThreeDots } from 'react-loader-spinner';
 import useAuth from "../../hooks/useAuth";
 import * as api from '../../services/api';
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Post({ post }) {
 
     const { auth } = useAuth();
+    const navigate = useNavigate();
     const [postLikes, setPostLikes] = useState(); 
     const [likeLever, setLikeLever] = useState(false);
     
@@ -57,11 +59,12 @@ export default function Post({ post }) {
                 <Icon>
                     {postLikes[0].isLiked ? <FaHeart color="#AC0000" size={20} onClick={() => like()}/> : <FiHeart color="#fff" size={20} onClick={() => like()}/>}
                 </Icon>
+
                 <TotalLikes>{postLikes[0].count} likes</TotalLikes>
             </ImageLikeContainer>
 
             <Main>
-                <Title>{post.author}</Title>
+                <Title to={`/user/${auth.id}`}>{post.author}</Title>
                 <Text>
                     <ReactHashtag
                         renderHashtag={(hashtagValue) => <Hashtag hashtagName={hashtagValue}/>}

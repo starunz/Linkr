@@ -32,11 +32,13 @@ export const ImageUser = styled.img`
     margin-bottom: 20px;
     border-radius: 26.5px;
     object-fit: cover;
-
+    
     @media (max-width: 610px) {
         width: 40px;
         height: 40px;
     }
+
+    cursor: pointer;
 `;
 
 export const TotalLikes = styled.div`
