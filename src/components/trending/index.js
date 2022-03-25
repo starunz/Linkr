@@ -1,5 +1,4 @@
 
-import { useEffect, useState } from "react";
 import Hashtag from "../../components/hashtag";
 import { TrendingBox, TrendingTitle, TrendingSeparator, TrendingList} from "./style";
 

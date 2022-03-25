@@ -25,7 +25,7 @@ const ResetStyle = createGlobalStyle`
 
     a {
         text-decoration: none;
-        margin: 0 auto;
+        margin: 0;
         color: #fff;
     }
 

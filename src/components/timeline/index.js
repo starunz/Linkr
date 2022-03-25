@@ -5,6 +5,7 @@ import * as api from '../../services/api';
 import Post from "../post";
 import { ThreeDots } from 'react-loader-spinner';
 import { useParams } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 export default function Timeline() {
 
@@ -23,7 +24,11 @@ export default function Timeline() {
             setPosts(posts);
             setIsLoading(false);
         }).catch(error => {
-            alert("An error occured while trying to fetch the posts, please refresh the page");
+            Swal.fire({
+                icon: 'error',
+                title: "OOPS...",
+                text: 'An error occured while trying to fetch the posts, please refresh the page',
+              });
             setIsLoading(false);
         });
     }, [hashtag]);
@@ -35,7 +40,7 @@ export default function Timeline() {
             {isLoading? (
                 <Load><ThreeDots color="#FFFFFF" height={50} width={50} /></Load>
             ) : (
-                posts.map((post, i) => <Post key={i} post={post} postId={post.postId}/>)
+                posts.map((post, i) => <Post key={i} post={post} />)
             )}
         </Container>
     );

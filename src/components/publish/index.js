@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { Button, Container, Form, Image } from "./style";
 import * as api from '../../services/api';
+import Swal from 'sweetalert2';
+
 import { useParams } from "react-router-dom";
+
 export default function Publish() {
 
     const {auth} = useAuth();
@@ -26,8 +29,13 @@ export default function Publish() {
             setIsLoading(false);
             setPublishData({link:'', description:''});
             window.location.reload();
+            
         }).catch(error => {
-            alert(error.message);
+            Swal.fire({
+                icon: 'error',
+                title: "OOPS...",
+                text: 'Email e/ou senha incorretos, insira os dados corretamente, por favor.',
+            });
             setIsLoading(false);
         });
     }
@@ -40,7 +48,7 @@ export default function Publish() {
         !hashtag && 
         ( 
         <Container>
-            <Image src={userData.photoUrl}/>
+            <Image to="/user/:id" src={userData.photoUrl}/>
 
             <Form onSubmit={e => publish(e)}>
                 <span>What are you going to share today?</span>

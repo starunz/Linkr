@@ -2,10 +2,10 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/home";
 import Login from "./pages/LoginPage";
 import SignUp from "./pages/SignUpPage";
+import UserPage from "./pages/userPage.js";
 
 import ResetStyle from "./components/styles/resetStyle";
 import GlobalStyle from "./components/styles/globalStyle";
-
 
 import { AuthProvider } from "./contexts/AuthContext";
 
@@ -21,6 +21,7 @@ const App = () => {
                     <Route path="/sign-up" element={<SignUp />} />
                     <Route path="/timeline" element={<Home/>} />
                     <Route path="/hashtag/:hashtag" element={<Home/>} />
+                    <Route path="/user/:id" element={<UserPage/>} />
                 </Routes>
             </BrowserRouter>
         </AuthProvider >

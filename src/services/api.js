@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const api = axios.create({baseURL: 'http://localhost:4000/' });
+const api = axios.create({baseURL: 'http://localhost:5000/' });
 
 const config = (token) => {
     return {
@@ -22,7 +22,7 @@ const login = (body) => {
 }
 
 const getUserData = (data) => {
-    const promise = api.get(`users/${data.id}`, config(data.token));
+    const promise = api.get(`/users/${data.id}`, config(data.token));
     return promise;
 }
 
