@@ -95,3 +95,9 @@ export const TextLink = styled.span`
 
     color: #CECECE;
 `;
+
+export const Hashtag = styled.span`
+  color: white;
+  font-size: 22px;
+  font-weight: bold
+`;
