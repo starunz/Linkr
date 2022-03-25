@@ -26,12 +26,13 @@ export default function Post({post}) {
 
             <Main>
                 <Title>{post.author}</Title>
-                <Text>{post.description}</Text>
+                <Text>
                     <ReactHashtag
                         renderHashtag={(hashtagValue) => <Hashtag hashtagName={hashtagValue}/>}
                     >
                         {post.description}
                     </ReactHashtag>
+                </Text>
 
                 <LinkContainer href={post.link} target="_blank">
 
