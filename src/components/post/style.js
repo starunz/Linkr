@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     width: 611px;
-    max-width: 100%;
 
     background: #171717;
     border-radius: 16px;
@@ -64,6 +63,9 @@ export const Title = styled.div`
     line-height: 23px;
 
     color: #FFFFFF;
+
+    display: flex;
+    justify-content: space-between;
 
     @media (max-width: 610px) {
         font-size: 17px;
@@ -173,6 +175,18 @@ export const TextLink = styled.span`
     }
 `;
 
+export const Icon = styled.div`
+    &:hover {
+        cursor: pointer;
+    }
+`;
+
+export const Icons = styled.div`
+    gap: 12px;
+    display: flex;
+`;
+
+
 export const Hashtag = styled.span`
   font-family: 'Lato';
   color: white;
@@ -180,8 +194,4 @@ export const Hashtag = styled.span`
   font-weight: bold
 `;
 
-export const Icon = styled.div`
-    &:hover {
-        cursor: pointer;
-    }
-`;
+

@@ -56,6 +56,11 @@ const getTrendingHashtags = () => {
     return promise;
 }
 
+const deletePost = (postId, token) => {
+    const promise = api.delete(`/posts/${postId}`, config(token));
+    return promise;
+}
+
 /*const example = (body ,token) => {
     const configAuth = config(token)
     const promise = api.post('/checkout', body, configAuth)
@@ -71,5 +76,6 @@ export {
     getPosts,
     likePost,
     getLikes,
-    getTrendingHashtags
+    getTrendingHashtags,
+    deletePost,
 }
