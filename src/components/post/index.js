@@ -31,6 +31,7 @@ import { useEffect, useState } from "react";
 import { BiEditAlt } from 'react-icons/bi';
 import { AiFillDelete } from 'react-icons/ai';
 import { useNavigate } from "react-router-dom";
+import ConfirmScreen from "../confirmScreen";
 
 export default function Post({ post }) {
 
@@ -39,6 +40,7 @@ export default function Post({ post }) {
     const [postLikes, setPostLikes] = useState(); 
     const [likeLever, setLikeLever] = useState(false);
     const [user, setUser] = useState({});
+    const [showConfirmScreen, setShowConfirmScreen] = useState(false);
     
     useEffect(() => {
         const promise = api.getLikes(post.id, auth.token);
@@ -73,6 +75,13 @@ export default function Post({ post }) {
 
     return(
         <Container>
+            {showConfirmScreen && (
+                <ConfirmScreen 
+                    post={post} 
+                    deletePosts={deletePosts} 
+                    setShow={setShowConfirmScreen}
+                />
+            )}
             <ImageLikeContainer>
                 <ImageUser src={post.photoUrl} alt={"user Photo"}/>
                 <Icon>
@@ -100,7 +109,7 @@ export default function Post({ post }) {
                     {post.author === user.userName && (
                         <Icons>
                             <Icon><BiEditAlt /></Icon>
-                            <Icon><AiFillDelete onClick={() => deletePosts(post.id)}/></Icon>
+                            <Icon><AiFillDelete onClick={() => setShowConfirmScreen(true)}/></Icon>
                         </Icons>
                     )}
                 </Title>
