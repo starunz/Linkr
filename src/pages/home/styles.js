@@ -11,6 +11,8 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
     padding-bottom: 50px;
+
+    //position: absolute;
 `;
 
 export const Main = styled.div`

@@ -9,4 +9,8 @@ export const Container = styled.div`
     font-size: 43px;
     line-height: 64px;
     color: #FFFFFF;
+
+    //position: relative;
+
+    //left: calc((100px - 890px) / 2);
 `;
