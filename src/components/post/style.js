@@ -22,6 +22,11 @@ export const ImageLikeContainer = styled.div`
     
     display: flex;
     flex-direction: column;
+
+    .tooltip {
+        font-family: 'Lato' !important;
+        font-size: 11px !important;
+    }
 `;
 
 export const ImageUser = styled.img`
@@ -48,6 +53,14 @@ export const TotalLikes = styled.div`
     margin-top: 5px;
 
     color: #fff;
+`;
+
+export const LikeTooltip = styled.div`
+    a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 `;
 
 export const Main = styled.div`

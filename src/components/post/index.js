@@ -3,6 +3,7 @@ import {
     ImageLikeContainer, 
     ImageUser, 
     TotalLikes,
+    LikeTooltip,
     Main, 
     Title, 
     Text, 
@@ -21,6 +22,7 @@ import Hashtag from "../hashtag";
 import { FiHeart } from 'react-icons/fi';
 import { FaHeart } from 'react-icons/fa';
 import { ThreeDots } from 'react-loader-spinner';
+import ReactTooltip from 'react-tooltip';
 
 import useAuth from "../../hooks/useAuth";
 import * as api from '../../services/api';
@@ -57,10 +59,22 @@ export default function Post({ post }) {
             <ImageLikeContainer>
                 <ImageUser src={post.photoUrl} alt={"user Photo"}/>
                 <Icon>
-                    {postLikes[0].isLiked ? <FaHeart color="#AC0000" size={20} onClick={() => like()}/> : <FiHeart color="#fff" size={20} onClick={() => like()}/>}
+                {postLikes[0].isLiked ? 
+                    <LikeTooltip>
+                        <a data-tip={`${postLikes[0].whoLiked}`}>
+                                <FaHeart color="#AC0000" size={20} onClick={() => like()} /> 
+                                <TotalLikes>{postLikes[0].count} likes</TotalLikes>
+                        </a>
+                    </LikeTooltip>
+                    :
+                    <LikeTooltip>
+                        <a data-tip={`${postLikes[0].whoLiked}`}>
+                                <FiHeart color="#fff" size={20} onClick={() => like()}/>
+                                <TotalLikes>{postLikes[0].count} likes</TotalLikes>
+                        </a> 
+                    </LikeTooltip>}
                 </Icon>
-
-                <TotalLikes>{postLikes[0].count} likes</TotalLikes>
+                <ReactTooltip class="tooltip" place="bottom" type="light" effect="solid" multiline={true}/>
             </ImageLikeContainer>
 
             <Main>
