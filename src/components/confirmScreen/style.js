@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     width: 597px;
+    max-width: 100%;
     height: 262px;
 
     background: #333333;
@@ -43,11 +44,20 @@ export const Text = styled.span`
     text-align: center;
 
     color: #FFFFFF;
+
+    @media (max-width: 610px) {
+        font-size: 22px;
+        line-height: 38px;
+    }
 `;
 
 export const Buttons = styled.div`
     gap: 63px;
     display: flex;
+
+    @media (max-width: 610px) {
+        gap: 10px;
+    }
 `;
 
 export const ButtonAccept = styled.button`
@@ -56,6 +66,8 @@ export const ButtonAccept = styled.button`
 
     background: #1877F2;
     border-radius: 5px;
+    ${props => props.disabled && 'opacity: 0.5;'}
+
     cursor: pointer;
 `;
 
@@ -65,5 +77,7 @@ export const ButtonRecuse = styled.button`
 
     background: #FFFFFF;
     border-radius: 5px;
+    ${props => props.disabled && 'opacity: 0.5;'}
+
     cursor: pointer;
 `;

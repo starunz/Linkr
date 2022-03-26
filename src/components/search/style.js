@@ -2,13 +2,13 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const SearchContainer = styled.div`
-    width: 563px;
+    width: 100%;
     height: 45px;
     position: relative;
 `;
 
 export const SearchLink = styled(Link)`
-    width: 563px;
+    width: 100%;
     height: 65.5px;
     padding-left: 17px;
     display: flex;
@@ -43,7 +43,7 @@ export const SearchLink = styled(Link)`
 
 export const SearchBox = styled.div`
     position: absolute;
-    width: 563px;
+    width: 100%;
     padding-top: 8px;
     left: 0px;
     top: 30px;
@@ -54,7 +54,7 @@ export const SearchBox = styled.div`
 `;
 
 export const SearchInput = styled.input`
-    width: 563px;
+    width: 100%;
     height: 45px;
     background: #FFFFFF;
     border-radius: 8px;

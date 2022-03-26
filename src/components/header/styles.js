@@ -41,6 +41,8 @@ const Logo = styled(Link)`
     }
 `;
 
+
+
 const Input = styled.input`
     width: 40vw;
     height: 45px;
@@ -63,14 +65,36 @@ const Input = styled.input`
     }
 `;
 
+const InputBox = styled.div`
+    width: 563px;
+    max-width: 60vw;
+    
+    position: relative;
+
+    @media (max-width: 650px) {
+        display: none;
+    }
+`;
+
 const ImageUser = styled.img`
     width: 53px;
     height: 53px;
 
-    background-color: red;
     border-radius: 50%;
 
     object-fit: cover;
+`;
+
+const BoxIconInput = styled.div`
+    font-family: 'Lato';
+    font-size: 19px;
+    line-height: 23px;
+
+    color: #C6C6C6;
+
+    position: absolute;
+    right: 10px;
+    top: 12px;
 `;
 
 const ChevronIcon = styled(IoChevronDownSharp )`
@@ -130,4 +154,6 @@ export {
     ImageUser,
     ChevronIcon,
     QuickAccess,
+    InputBox,
+    BoxIconInput,
 }

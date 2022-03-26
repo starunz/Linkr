@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     width: 611px;
+    max-width: 100%;
 
     background: #171717;
     border-radius: 16px;
@@ -88,7 +89,7 @@ export const Title = styled.div`
     }
 `;
 
-export const Text = styled.span`
+export const Text = styled.div`
     font-family: 'Lato';
     font-style: normal;
     font-weight: 400;
@@ -96,6 +97,29 @@ export const Text = styled.span`
     line-height: 20px;
 
     color: #B7B7B7;
+
+    @media (max-width: 610px) {
+        font-size: 15px;
+        line-height: 18px;
+    }
+`;
+
+export const EditingText = styled.input`
+    background: #171717;
+
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 20px;
+
+    color: #B7B7B7;
+
+    &:focus {
+        box-shadow: 0 0 0 0;
+        border: 0 none;
+        outline: 0;
+    }
 
     @media (max-width: 610px) {
         font-size: 15px;

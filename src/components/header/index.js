@@ -5,10 +5,11 @@ import {
     ChevronIcon, 
     QuickAccess,
     Input,
+    InputBox,
+    BoxIconInput,
 } from "./styles";
-
+import { AiOutlineSearch } from 'react-icons/ai';
 import { useState, useRef, useEffect } from "react";
-
 import useAuth from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
 import Search  from "../search";
@@ -46,7 +47,12 @@ export default function Header() {
     return(
         <Container ref={ref}>
             <Logo to="/timeline">Linkr</Logo>
-            <Search/>
+
+            <InputBox>
+                <Search/>
+                <BoxIconInput><AiOutlineSearch /></BoxIconInput>
+            </InputBox>
+
             <ImageUser 
                 src={userData.photoUrl}
                 onClick={() => setQuickAccess(!quickAccess)}

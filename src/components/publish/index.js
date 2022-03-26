@@ -34,7 +34,7 @@ export default function Publish() {
             Swal.fire({
                 icon: 'error',
                 title: "OOPS...",
-                text: 'Email e/ou senha incorretos, insira os dados corretamente, por favor.',
+                text: 'Erro ao postar o post, tente postar novamente.',
             });
             setIsLoading(false);
         });

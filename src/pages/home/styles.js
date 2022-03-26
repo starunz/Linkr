@@ -25,3 +25,50 @@ export const Main = styled.div`
     
     display: flex;
 `;
+
+export const Input = styled.input`
+    width: 100%;
+    height: 45px;
+
+    background: #FFFFFF;
+
+    border-radius: 8px;
+    border: none;
+
+    padding-left: 17px;
+
+    outline: none;
+
+    &::placeholder {
+        font-family: 'Lato';
+        font-size: 19px;
+        line-height: 23px;
+
+        color: #C6C6C6;
+    }
+`;
+
+export const InputBox = styled.div`
+    width: 100%;
+
+    padding: 15px;
+    position: relative;
+
+    @media (min-width: 650px) {
+        display: none;
+    }
+`;
+
+export const BoxIconInput = styled.div`
+font-family: 'Lato';
+font-size: 19px;
+line-height: 23px;
+
+color: #C6C6C6;
+
+position: absolute;
+right: 25px;
+top: 28px;
+`;
+
+

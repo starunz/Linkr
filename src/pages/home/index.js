@@ -3,10 +3,13 @@ import Header from "../../components/header";
 import Timeline from "../../components/timeline";
 import Title from "../../components/title";
 import Trending from "../../components/trending";
-import { Container, Main} from "./styles";
+import { Container, Main, Input, InputBox, BoxIconInput} from "./styles";
 import { useParams } from "react-router-dom";
 import * as api from '../../services/api';
 import Swal from 'sweetalert2';
+import { AiOutlineSearch } from 'react-icons/ai';
+import Search from "../../components/search";
+
 
 export default function Home() {
     
@@ -32,6 +35,10 @@ export default function Home() {
         <>
         <Header />
         <Container>
+            <InputBox>
+                <Search />
+                <BoxIconInput><AiOutlineSearch /></BoxIconInput>
+            </InputBox>
             <Title>{hashtag ? '#'+hashtag : 'timeline'}</Title>
             <Main>
                 <Timeline />
