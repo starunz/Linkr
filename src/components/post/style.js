@@ -21,6 +21,11 @@ export const ImageLikeContainer = styled.div`
     
     display: flex;
     flex-direction: column;
+
+    .tooltip {
+        font-family: 'Lato' !important;
+        font-size: 11px !important;
+    }
 `;
 
 export const ImageUser = styled.img`
@@ -31,11 +36,13 @@ export const ImageUser = styled.img`
     margin-bottom: 20px;
     border-radius: 26.5px;
     object-fit: cover;
-
+    
     @media (max-width: 610px) {
         width: 40px;
         height: 40px;
     }
+
+    cursor: pointer;
 `;
 
 export const TotalLikes = styled.div`
@@ -45,6 +52,14 @@ export const TotalLikes = styled.div`
     margin-top: 5px;
 
     color: #fff;
+`;
+
+export const LikeTooltip = styled.div`
+    a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 `;
 
 export const Main = styled.div`

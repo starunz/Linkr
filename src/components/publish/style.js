@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { Link } from 'react-router-dom';
+
 export const Container = styled.div`
     width: 611px;
     max-width: 100%;
@@ -19,7 +21,7 @@ export const Container = styled.div`
     }
 `;
 
-export const Image = styled.img`
+export const Image = styled(Link)`
     width: 50px;
     height: 50px;
 
