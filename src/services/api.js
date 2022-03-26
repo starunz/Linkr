@@ -60,6 +60,11 @@ const getTrendingHashtags = () => {
     return promise;
 }
 
+const getUsers = (userQuery) => {
+    const promise = api.get(`/users?like=${userQuery}`);
+    return promise;
+}
+
 const deletePost = (postId, token) => {
     const promise = api.delete(`/posts/${postId}`, config(token));
     return promise;
@@ -88,4 +93,5 @@ export {
     getTrendingHashtags,
     deletePost,
     updatePost,
+    getUsers,
 }

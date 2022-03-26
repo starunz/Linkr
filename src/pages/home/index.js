@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import * as api from '../../services/api';
 import Swal from 'sweetalert2';
 import { AiOutlineSearch } from 'react-icons/ai';
+import Search from "../../components/search";
 
 
 export default function Home() {
@@ -35,9 +36,7 @@ export default function Home() {
         <Header />
         <Container>
             <InputBox>
-                <Input 
-                    placeholder="Se  for people and friends"
-                />
+                <Search />
                 <BoxIconInput><AiOutlineSearch /></BoxIconInput>
             </InputBox>
             <Title>{hashtag ? '#'+hashtag : 'timeline'}</Title>
