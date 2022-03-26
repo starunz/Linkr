@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    padding-bottom: 43px;
+    width: 940px;
+    max-width: 100%;
+    padding: 0 0 43px 17px;
 
     font-family: 'Oswald';
     font-style: normal;

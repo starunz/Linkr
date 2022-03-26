@@ -1,6 +1,10 @@
 import axios from "axios";
+import dotenv from 'dotenv';
+dotenv.config();
 
-const api = axios.create({ baseURL: 'https://linkr-bltml.herokuapp.com' });
+// const api = axios.create({ baseURL: 'https://linkr-bltml.herokuapp.com' });
+const api = axios.create({ baseURL: process.env.REACT_APP_BASE_URL });
+
 
 const config = (token) => {
     return {
@@ -61,6 +65,11 @@ const deletePost = (postId, token) => {
     return promise;
 }
 
+const updatePost = (postId, token, description) => {
+    const promise = api.put(`/posts/${postId}`, {description}, config(token));
+    return promise;
+}
+
 /*const example = (body ,token) => {
     const configAuth = config(token)
     const promise = api.post('/checkout', body, configAuth)
@@ -78,4 +87,5 @@ export {
     getLikes,
     getTrendingHashtags,
     deletePost,
+    updatePost,
 }

@@ -15,6 +15,7 @@ import {
     NotImage,
     Icon,
     Icons,
+    EditingText,
 } from "./style";
 import { AiOutlineFileImage } from 'react-icons/ai';
 import { Load } from "../timeline/style";
@@ -22,14 +23,14 @@ import ReactHashtag from "@mdnm/react-hashtag";
 import Hashtag from "../hashtag";
 import { FiHeart } from 'react-icons/fi';
 import { FaHeart } from 'react-icons/fa';
-import { ThreeDots } from 'react-loader-spinner';
-import ReactTooltip from 'react-tooltip';
-
-import useAuth from "../../hooks/useAuth";
-import * as api from '../../services/api';
-import { useEffect, useState } from "react";
 import { BiEditAlt } from 'react-icons/bi';
 import { AiFillDelete } from 'react-icons/ai';
+import { ThreeDots } from 'react-loader-spinner';
+import ReactTooltip from 'react-tooltip';
+import Swal from 'sweetalert2';
+import useAuth from "../../hooks/useAuth";
+import * as api from '../../services/api';
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ConfirmScreen from "../confirmScreen";
 
@@ -41,6 +42,10 @@ export default function Post({ post }) {
     const [likeLever, setLikeLever] = useState(false);
     const [user, setUser] = useState({});
     const [showConfirmScreen, setShowConfirmScreen] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
+    const inputEditText = useRef(null);
+    const [newDescription, setNewDescription] = useState(post.description);
     
     useEffect(() => {
         const promise = api.getLikes(post.id, auth.token);
@@ -65,13 +70,58 @@ export default function Post({ post }) {
     }
 
     function deletePosts(id) {
-        console.log(auth.token)
+        setIsLoading(true);
         if(!auth.token) return;
         const promise = api.deletePost(post.id, auth.token);
+
         promise.then(() => {
             window.location.reload();
+        }).catch(() => {
+            setShowConfirmScreen(false);
+            Swal.fire({
+                icon: 'error',
+                title: "OOPS...",
+                text: "Delete post not sucess! Try again!",
+            });
         });
     }
+
+    async function editPost() {
+        await setIsEditing(true);
+        inputEditText.current?.focus();
+    }
+
+    function updatePosts(e) {
+        e.preventDefault();
+        setIsLoading(true);
+        if(!auth.token) return;
+        const promise = api.updatePost(post.id, auth.token, newDescription);
+
+        promise.then(response => {
+            window.location.reload();
+        }).catch(error => {
+            Swal.fire({
+                icon: 'error',
+                title: "OOPS...",
+                text: "Update post not sucess! Try again!",
+            });
+            setIsLoading(false);
+        });
+    }
+
+    document.onkeydown = function handleKeyDown(e){
+        try {
+            switch(e.key) {
+                case 'Escape':
+                    setIsEditing(false);
+                    break;
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
 
     return(
         <Container>
@@ -80,6 +130,7 @@ export default function Post({ post }) {
                     post={post} 
                     deletePosts={deletePosts} 
                     setShow={setShowConfirmScreen}
+                    isLoading={isLoading}
                 />
             )}
             <ImageLikeContainer>
@@ -108,18 +159,30 @@ export default function Post({ post }) {
                     {post.author}
                     {post.author === user.userName && (
                         <Icons>
-                            <Icon><BiEditAlt /></Icon>
+                            <Icon>{isEditing? <BiEditAlt onClick={() => setIsEditing(false)} /> : <BiEditAlt onClick={editPost} />}</Icon>
                             <Icon><AiFillDelete onClick={() => setShowConfirmScreen(true)}/></Icon>
                         </Icons>
                     )}
                 </Title>
-                <Text>
-                    <ReactHashtag
-                        renderHashtag={(hashtagValue) => <Hashtag hashtagName={hashtagValue}/>}
-                    >
-                        {post.description}
-                    </ReactHashtag>
-                </Text>
+                {isEditing? (
+                    <form onSubmit={e => updatePosts(e)}>
+                        <EditingText 
+                            ref={inputEditText} 
+                            type="text" 
+                            value={newDescription}
+                            onChange={e => setNewDescription(e.target.value)}
+                            disabled={isLoading}
+                        />
+                    </form>
+                ) : (
+                    <Text>
+                        <ReactHashtag
+                            renderHashtag={(hashtagValue) => <Hashtag hashtagName={hashtagValue}/>}
+                        >
+                            {post.description}
+                        </ReactHashtag>
+                    </Text>
+                )}
 
                 <LinkContainer href={post.link} target="_blank">
 

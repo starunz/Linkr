@@ -5,13 +5,13 @@ import {
     ChevronIcon, 
     QuickAccess,
     Input,
+    InputBox,
+    BoxIconInput,
 } from "./styles";
-
+import { AiOutlineSearch } from 'react-icons/ai';
 import { useState, useRef, useEffect } from "react";
-
 import useAuth from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
-
 import * as api from '../../services/api'
 
 export default function Header() {
@@ -47,9 +47,12 @@ export default function Header() {
         <Container ref={ref}>
             <Logo to="/timeline">Linkr</Logo>
 
-            <Input 
-                placeholder="Search for people and friends"
-            />
+            <InputBox>
+                <Input 
+                    placeholder="Se  for people and friends"
+                />
+                <BoxIconInput><AiOutlineSearch /></BoxIconInput>
+            </InputBox>
 
             <ImageUser 
                 src={userData.photoUrl}

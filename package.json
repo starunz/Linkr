@@ -5,6 +5,7 @@
   "dependencies": {
     "@mdnm/react-hashtag": "^3.0.2",
     "axios": "^0.26.1",
+    "dotenv": "^16.0.0",
     "metadata-scraper": "^0.2.52",
     "open-graph-scraper": "^4.11.0",
     "react": "^17.0.2",

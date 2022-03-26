@@ -11,6 +11,10 @@ export const TrendingBox = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+
+    @media (max-width: 800px) {
+        display: none;
+    }
 `;
 
 export const TrendingTitle = styled.h1`
