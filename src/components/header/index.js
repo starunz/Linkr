@@ -11,7 +11,7 @@ import { useState, useRef, useEffect } from "react";
 
 import useAuth from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
-
+import Search  from "../search";
 import * as api from '../../services/api'
 
 export default function Header() {
@@ -46,11 +46,7 @@ export default function Header() {
     return(
         <Container ref={ref}>
             <Logo to="/timeline">Linkr</Logo>
-
-            <Input 
-                placeholder="Search for people and friends"
-            />
-
+            <Search/>
             <ImageUser 
                 src={userData.photoUrl}
                 onClick={() => setQuickAccess(!quickAccess)}

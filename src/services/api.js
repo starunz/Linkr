@@ -56,6 +56,11 @@ const getTrendingHashtags = () => {
     return promise;
 }
 
+const getUsers = (userQuery) => {
+    const promise = api.get(`/users?like=${userQuery}`);
+    return promise;
+}
+
 /*const example = (body ,token) => {
     const configAuth = config(token)
     const promise = api.post('/checkout', body, configAuth)
@@ -71,5 +76,6 @@ export {
     getPosts,
     likePost,
     getLikes,
-    getTrendingHashtags
+    getTrendingHashtags,
+    getUsers
 }
