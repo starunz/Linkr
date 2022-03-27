@@ -79,18 +79,19 @@ function Login() {
             title: "OOPS...",
             text: 'Email e/ou senha incorretos, insira os dados corretamente, por favor.',
           });
+        }
 
-          if (error.response.status === 204) {
-            setSignInData({
-              email: '',
-              password: '',
-            });
-  
-            Swal.fire({
-              icon: 'error',
-              title: "OOPS...",
-              text: 'Usuário não existente, faça um cadastro, por favor.',
-            });
+        if (error.response.status === 204) {
+          setSignInData({
+            email: '',
+            password: '',
+          });
+
+          Swal.fire({
+            icon: 'error',
+            title: "OOPS...",
+            text: 'Usuário não existente, faça um cadastro, por favor.',
+          });
 
           return;
         }
@@ -136,7 +137,7 @@ function Login() {
 
         <StyledLink to="/sign-up">First time? Create an account!!</StyledLink>
       </Form>
-    </Container>
+  </Container>
   );
 }
 
