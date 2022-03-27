@@ -155,7 +155,7 @@ export default function Post({ post }) {
             </ImageLikeContainer>
 
             <Main>
-                <Title to={`/user/${auth.id}`}>
+                <Title onClick={() => navigate(`/user/${post.userId}`)}>
                     {post.author}
                     {post.author === user.userName && (
                         <Icons>

@@ -75,6 +75,11 @@ const updatePost = (postId, token, description) => {
     return promise;
 }
 
+const getUserPosts = (userId) => {
+    const promise = api.get(`/user/${userId}`);
+    return promise;
+}
+
 /*const example = (body ,token) => {
     const configAuth = config(token)
     const promise = api.post('/checkout', body, configAuth)
@@ -94,4 +99,5 @@ export {
     deletePost,
     updatePost,
     getUsers,
+    getUserPosts
 }

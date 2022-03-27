@@ -42,8 +42,6 @@ export const ImageUser = styled.img`
         width: 40px;
         height: 40px;
     }
-
-    cursor: pointer;
 `;
 
 export const TotalLikes = styled.div`
@@ -82,6 +80,8 @@ export const Title = styled.div`
 
     display: flex;
     justify-content: space-between;
+
+    cursor: pointer;
 
     @media (max-width: 610px) {
         font-size: 17px;
