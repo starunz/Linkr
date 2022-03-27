@@ -155,8 +155,8 @@ export default function Post({ post }) {
             </ImageLikeContainer>
 
             <Main>
-                <Title onClick={() => navigate(`/user/${post.userId}`)}>
-                    {post.author}
+                <Title >
+                    <span onClick={() => navigate(`/user/${post.userId}`)}>{post.author}</span>
                     {post.author === user.userName && (
                         <Icons>
                             <Icon>{isEditing? <BiEditAlt onClick={() => setIsEditing(false)} /> : <BiEditAlt onClick={editPost} />}</Icon>
