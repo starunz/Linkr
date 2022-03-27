@@ -4,7 +4,7 @@ import { Button, Container, Form, Image } from "./style";
 import * as api from '../../services/api';
 import Swal from 'sweetalert2';
 
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function Publish() {
 
@@ -13,6 +13,8 @@ export default function Publish() {
     const [publishData, setPublishData] = useState({link: '', description: ''}); 
     const [isLoading, setIsLoading] = useState(false);
     const { hashtag } = useParams();
+    const navigate = useNavigate();
+
     useEffect(() => {
         const promise = api.getUserData(auth);
         promise.then(response => {
@@ -48,7 +50,7 @@ export default function Publish() {
         !hashtag && 
         ( 
         <Container>
-            <Image to="/user/:id" src={userData.photoUrl}/>
+                <Image onClick={() => navigate(`/user/${userData.id}`)} src={userData.photoUrl}/>
 
             <Form onSubmit={e => publish(e)}>
                 <span>What are you going to share today?</span>

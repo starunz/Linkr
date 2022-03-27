@@ -21,12 +21,14 @@ export const Container = styled.div`
     }
 `;
 
-export const Image = styled(Link)`
+export const Image = styled.img`
     width: 50px;
     height: 50px;
 
     border-radius: 50%;
     object-fit: cover;
+
+    cursor: pointer;
 
     @media (max-width: 610px) {
         display: none;
