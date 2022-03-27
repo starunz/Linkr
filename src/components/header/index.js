@@ -4,7 +4,6 @@ import {
     ImageUser, 
     ChevronIcon, 
     QuickAccess,
-    Input,
     InputBox,
     BoxIconInput,
 } from "./styles";

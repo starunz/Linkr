@@ -72,12 +72,13 @@ export const Main = styled.div`
 export const Title = styled.div`
     height: 23px;
 
+    span {
     font-family: 'Lato';
     font-size: 19px;
     line-height: 23px;
-
+    }
     color: #FFFFFF;
-
+    
     display: flex;
     justify-content: space-between;
 
