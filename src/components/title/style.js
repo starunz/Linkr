@@ -12,10 +12,13 @@ export const Container = styled.div`
     line-height: 64px;
     color: #FFFFFF;
 
-    //position: relative;
+    position: relative;
 
-    //left: calc((100px - 890px) / 2);
+    left: calc((100px - 130px) / 2);
+
     @media (max-width: 610px) {
         padding-bottom: 19px;
+
+        left: 0px;
     }
 `;

@@ -36,11 +36,12 @@ import useAuth from "../../hooks/useAuth";
 import * as api from '../../services/api';
 
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Post({ post }) {
 
     const { auth } = useAuth();
-    
+    const navigate = useNavigate();
     const [postLikes, setPostLikes] = useState(); 
     const [likeLever, setLikeLever] = useState(false);
     const [user, setUser] = useState({});
@@ -156,7 +157,7 @@ export default function Post({ post }) {
             </ImageLikeContainer>
 
             <Main>
-                <Title onClick={() => navigate(`/user/${post.userId}`)}>
+                <Title onClick={() => navigate(`/user/${auth.id}`)}>
                     {post.author}
                     {post.author === user.userName && (
                         <Icons>

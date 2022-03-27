@@ -1,10 +1,6 @@
 import axios from "axios";
-//import dotenv from 'dotenv';
-//dotenv.config();
 
-// const api = axios.create({ baseURL: 'https://linkr-bltml.herokuapp.com' });
-const api = axios.create({ baseURL: 'http://localhost:5000' });
-
+const api = axios.create({ baseURL: 'https://linkr-bltml.herokuapp.com'});
 
 const config = (token) => {
     return {
@@ -79,13 +75,6 @@ const getUserPosts = (userId) => {
     const promise = api.get(`/user/${userId}`);
     return promise;
 }
-
-/*const example = (body ,token) => {
-    const configAuth = config(token)
-    const promise = api.post('/checkout', body, configAuth)
-
-    return promise;
-}*/
 
 export {
     signUp,
