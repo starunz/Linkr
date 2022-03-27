@@ -26,6 +26,8 @@ export const Image = styled.img`
     border-radius: 50%;
     object-fit: cover;
 
+    cursor: pointer;
+
     @media (max-width: 610px) {
         display: none;
     }
