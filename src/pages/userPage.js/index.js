@@ -76,10 +76,9 @@ export default function UserPage() {
         });
     }, []);
 
-    if (!posts[0]) {
+    if(posts.length === 0) {
         return <Load><ThreeDots color="#FFFFFF" height={50} width={50} /></Load>
     }
-
     return(
         <>
             <Header/>
@@ -88,18 +87,19 @@ export default function UserPage() {
                     <Search />
                     <BoxIconInput><AiOutlineSearch /></BoxIconInput>
                 </InputBox>
-                        <UserContainer>
-                            <ImageUser src={posts[0].photoUrl} /> 
-                            <Title>{posts[0].author}'s post</Title> 
-                        </UserContainer>
+
+                <UserContainer>
+                    <ImageUser src={posts.user[0].photoUrl} /> 
+                    <Title>{posts.user[0].userName}'s post</Title> 
+                </UserContainer>
+                
                 <Main>
                     <ContainerPost>
-                        
-                        {(posts.length === 0 && isLoading === false) ? <Message>There are no posts yet</Message> : ""}
+                        {(posts.posts.length === 0 && isLoading === false) ? <Message>There are no posts yet</Message> : ""}
                         {isLoading ? (
                             <Load><ThreeDots color="#FFFFFF" height={50} width={50} /></Load>
                         ) : (
-                            posts.map((post, i) => <Post key={i} post={post} />)
+                            posts.posts.map((post, i) => <Post key={i} post={post} />)
                         )}
                     </ContainerPost>
 
