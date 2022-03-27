@@ -1,6 +1,10 @@
 import axios from "axios";
+//import dotenv from 'dotenv';
+//dotenv.config();
 
-const api = axios.create({baseURL: 'http://localhost:5000' });
+// const api = axios.create({ baseURL: 'https://linkr-bltml.herokuapp.com' });
+const api = axios.create({ baseURL: 'http://localhost:5000' });
+
 
 const config = (token) => {
     return {
@@ -56,6 +60,21 @@ const getTrendingHashtags = () => {
     return promise;
 }
 
+const getUsers = (userQuery) => {
+    const promise = api.get(`/users?like=${userQuery}`);
+    return promise;
+}
+
+const deletePost = (postId, token) => {
+    const promise = api.delete(`/posts/${postId}`, config(token));
+    return promise;
+}
+
+const updatePost = (postId, token, description) => {
+    const promise = api.put(`/posts/${postId}`, {description}, config(token));
+    return promise;
+}
+
 /*const example = (body ,token) => {
     const configAuth = config(token)
     const promise = api.post('/checkout', body, configAuth)
@@ -71,5 +90,8 @@ export {
     getPosts,
     likePost,
     getLikes,
-    getTrendingHashtags
+    getTrendingHashtags,
+    deletePost,
+    updatePost,
+    getUsers,
 }

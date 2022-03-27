@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    padding-bottom: 43px;
+    width: 940px;
+    max-width: 100%;
+    padding: 0 0 43px 17px;
 
     font-family: 'Oswald';
     font-style: normal;
@@ -13,4 +15,7 @@ export const Container = styled.div`
     //position: relative;
 
     //left: calc((100px - 890px) / 2);
+    @media (max-width: 610px) {
+        padding-bottom: 19px;
+    }
 `;

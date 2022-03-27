@@ -18,6 +18,10 @@ export const TrendingBox = styled.div`
     word-break: break-all;
 
     padding: 9px 2px 30px 0px;
+
+    @media (max-width: 800px) {
+        display: none;
+    }
 `;
 
 export const TrendingTitle = styled.h1`
