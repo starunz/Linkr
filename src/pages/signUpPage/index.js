@@ -64,6 +64,20 @@ function SignUp() {
 
         return;
       }
+
+      if(formData.username.length < 3 ){
+        setFormData({
+          username: ''
+        })
+
+        Swal.fire({
+          icon: 'error',
+          title: "OOPS...",
+          text: 'O username precisa ter no mínimo 3 caracteres.',
+        });
+
+        return;
+      }
     }
   }
 
