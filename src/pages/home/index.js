@@ -39,7 +39,7 @@ export default function Home() {
                 <Search />
                 <BoxIconInput><AiOutlineSearch /></BoxIconInput>
             </InputBox>
-            <Title>{hashtag ? '#'+hashtag : 'timeline'}</Title>
+            <Title>{hashtag ? '# '+hashtag : 'timeline'}</Title>
             <Main>
                 <Timeline />
                 {trendingList.length > 0 && 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { 
     SearchContainer, 
@@ -10,7 +10,6 @@ import {
 import * as api from '../../services/api';
 
 import {DebounceInput} from 'react-debounce-input';
-
 export default function Search() {
 
     const [userText, setUserText] = useState('');
@@ -34,17 +33,32 @@ export default function Search() {
         }
         setUserList(null);
     }, [userText]);
-
+    const ref = useRef();
     function changeSearchText(e) {
         setUserText(e.target.value);
     }
 
+    useEffect(() => {
+        function OutsideClick(e) {
+            if (ref.current && !ref.current.contains(e.target)) {
+              setUserList(null);
+              setUserText('');
+            }
+        }
+
+        document.addEventListener("mousedown", OutsideClick)
+
+        return () => {
+            document.removeEventListener("mousedown", OutsideClick)
+        }
+    }, [userText]);
+
     return(
-            <SearchContainer>
+            <SearchContainer ref={ref}>
                 <SearchBox>
                 {(
                     userList?.map((user, i, userList) =>
-                    <SearchLink to={`/user/${user.id}`} key={i} isLast={i+1 === userList.length ? true : false}>
+                    <SearchLink  key={i} href={`/user/${user.id}`} isLast={i+1 === userList.length ? true : false}>
                         <img src={user.photoUrl} alt={user.name}/>
                             <span>{user.userName}</span>
                     </SearchLink>)
@@ -57,7 +71,6 @@ export default function Search() {
                 placeholder="Search for people"
                 onChange={changeSearchText}
                 value={userText}
-                //disabled={isLoading}
                 />
             </SearchContainer>
     );

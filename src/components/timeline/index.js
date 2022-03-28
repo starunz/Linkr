@@ -15,12 +15,14 @@ export default function Timeline() {
 
     useEffect(() => {
         setIsLoading(true);
-        const promise = api.getPosts();
-
+        let promise = null;
+        if(hashtag)
+        promise = api.getPosts(hashtag);
+        else
+        promise = api.getPosts();
+        
         promise.then(response => {
             let posts = response.data;
-            if(hashtag)
-            posts = posts.filter(p => {return p.description.indexOf(`#${hashtag}`) > 0});
             setPosts(posts);
             setIsLoading(false);
         }).catch(error => {

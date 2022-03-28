@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const api = axios.create({ baseURL: 'https://linkr-bltml.herokuapp.com'});
-
+//const api = axios.create({ baseURL: 'https://linkr-bltml.herokuapp.com'});
+const api = axios.create({ baseURL: process.env.REACT_APP_BASE_URL });
 const config = (token) => {
     return {
         headers: {
@@ -32,8 +32,12 @@ const publishPost = ({token, publishData, id}) => {
     return promise;
 }
 
-const getPosts = () => {
-    const promise = api.get('/posts');
+const getPosts = (hashtag) => {
+    let promise = null;
+    if(hashtag)
+    promise = api.get(`/posts?hashtag=${hashtag}`);
+    else
+    promise = api.get('/posts');
     return promise;
 }
 
