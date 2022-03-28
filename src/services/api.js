@@ -76,6 +76,13 @@ const getUserPosts = (userId) => {
     return promise;
 }
 
+/*const example = (body ,token) => {
+    const configAuth = config(token)
+    const promise = api.post('/checkout', body, configAuth)
+
+    return promise;
+}*/
+
 export {
     signUp,
     login,
