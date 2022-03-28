@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react";
-import { SearchContainer, SearchBox, SearchInput, SearchLink } from "./style";
+
+import { 
+    SearchContainer, 
+    SearchBox, 
+    SearchInput, 
+    SearchLink 
+} from "./style";
+
 import * as api from '../../services/api';
+
 import {DebounceInput} from 'react-debounce-input';
 
 export default function Search() {

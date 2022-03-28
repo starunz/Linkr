@@ -17,22 +17,26 @@ import {
     Icons,
     EditingText,
 } from "./style";
-import { AiOutlineFileImage } from 'react-icons/ai';
 import { Load } from "../timeline/style";
-import ReactHashtag from "@mdnm/react-hashtag";
 import Hashtag from "../hashtag";
+import ConfirmScreen from "../confirmScreen";
+
+import { AiOutlineFileImage } from 'react-icons/ai';
 import { FiHeart } from 'react-icons/fi';
 import { FaHeart } from 'react-icons/fa';
 import { BiEditAlt } from 'react-icons/bi';
 import { AiFillDelete } from 'react-icons/ai';
+
+import ReactHashtag from "@mdnm/react-hashtag";
 import { ThreeDots } from 'react-loader-spinner';
 import ReactTooltip from 'react-tooltip';
 import Swal from 'sweetalert2';
+
 import useAuth from "../../hooks/useAuth";
 import * as api from '../../services/api';
+
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ConfirmScreen from "../confirmScreen";
 
 export default function Post({ post }) {
 
@@ -120,8 +124,6 @@ export default function Post({ post }) {
             console.log(error);
         }
     }
-
-
 
     return(
         <Container>

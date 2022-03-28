@@ -1,19 +1,37 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
 import Header from "../../components/header"
-import { Container, Main } from "../home/styles"
 import Title from "../../components/title"
 import Trending from "../../components/trending"
-import * as api from '../../services/api';
-import Swal from 'sweetalert2';
-import { useParams } from "react-router-dom";
-import { Message, Load } from "../../components/timeline/style";
-import { ThreeDots } from 'react-loader-spinner';
 import Post from "../../components/post";
-import { Container as ContainerPost } from "../../components/timeline/style";
 import { ImageUser } from "../../components/post/style";
 import { UserContainer } from "./styles";
 import Search from "../../components/search";
-import { InputBox, BoxIconInput } from "../home/styles";
+
+import { 
+    Container, 
+    Main 
+} from "../home/styles"
+
+import { 
+    Message, 
+    Load 
+} from "../../components/timeline/style";
+
+import { 
+    InputBox, 
+    BoxIconInput 
+} from "../home/styles";
+
+import { 
+    Container as ContainerPost 
+} from "../../components/timeline/style";
+
+import * as api from '../../services/api';
+
+import Swal from 'sweetalert2';
+import { ThreeDots } from 'react-loader-spinner';
 import { AiOutlineSearch } from 'react-icons/ai';
 
 export default function UserPage() {

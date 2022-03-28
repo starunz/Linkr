@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 const Container = styled.div`
   height: 100vh;
   width: 100%;
+
   font-weight: bold;
 
   display: flex;
@@ -15,20 +16,26 @@ const Container = styled.div`
 const Main = styled.main`
   width: 65%;
   height: 100%;
+
   background-color: #151515;
   box-shadow: 4px 0px 4px 0px #00000040;
   color: #ffffff;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+
   padding-left: 10%;
 
   @media (max-width: 600px) {
     width: 100%;
     height: 25%;
+
     z-index: 5;
+
     align-items: center;
+    
     padding-left: 0px;
     padding-bottom: 30px;
   }
@@ -37,7 +44,9 @@ const Main = styled.main`
 const Form = styled.form`
   min-height: 100vh;
   width: 35%;
+
   background-color: #333333;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -45,9 +54,12 @@ const Form = styled.form`
 
   @media (max-width: 600px) {
     justify-content: flex-start;
+
     padding-top: 10%;
+
     width: 100%;
     height: 75%;
+
     z-index: 3;
   }
 `;
@@ -66,6 +78,7 @@ const StyledLink = styled(Link)`
   line-height: 24px;
 
   text-decoration-line: underline;
+
   color: #ffffff;
 
   @media (max-width: 600px) {
@@ -85,11 +98,13 @@ const Title = styled.p`
 
   @media (max-width: 600px) {
     margin-top: 20px;
+
     font-size: 85px;
     line-height: 67px;
   }
   @media (max-width: 380px) {
     margin-top: 20px;
+
     font-size: 76px;
     line-height: 64px;
   }
@@ -110,16 +125,25 @@ const Description = styled.div`
   @media (max-width: 600px) {
     font-size: 23px;
     text-align: center;
+    
     width: unset;
     max-width: 240px;
   }
   @media (max-width: 380px) {
     font-size: 22px;
     text-align: center;
+    line-height: 34px;
+
     width: unset;
     max-width: 240px;
-    line-height: 34px;
   }
 `;
 
-export { Container, StyledLink, Form, Main, Description, Title };
+export { 
+  Container, 
+  StyledLink, 
+  Form, 
+  Main, 
+  Description, 
+  Title 
+}

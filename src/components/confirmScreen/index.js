@@ -1,10 +1,15 @@
-import { ButtonAccept, ButtonRecuse, Buttons, Container, OpacityBackground, Text } from "./style";
+import { 
+    ButtonAccept, 
+    ButtonRecuse, 
+    Buttons, 
+    Container, 
+    OpacityBackground, 
+    Text 
+} from "./style";
+
 import { ThreeDots } from 'react-loader-spinner';
 
-
-        
 export default function ConfirmScreen({setShow, deletePosts, post, isLoading}) {
-
 
     return(
         <>

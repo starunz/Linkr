@@ -67,6 +67,8 @@ export const Main = styled.div`
 
     display: flex;
     flex-direction: column;
+
+    word-break: break-all;
 `;
 
 export const Title = styled.div`

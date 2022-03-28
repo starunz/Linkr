@@ -11,6 +11,7 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 50px;
 
     @media (max-width: 610px) {
         padding-top: 91px;
@@ -60,15 +61,13 @@ export const InputBox = styled.div`
 `;
 
 export const BoxIconInput = styled.div`
-font-family: 'Lato';
-font-size: 19px;
-line-height: 23px;
+    font-family: 'Lato';
+    font-size: 19px;
+    line-height: 23px;
 
-color: #C6C6C6;
+    color: #C6C6C6;
 
-position: absolute;
-right: 25px;
-top: 28px;
+    position: absolute;
+    right: 25px;
+    top: 28px;
 `;
-
-

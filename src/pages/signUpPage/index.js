@@ -44,7 +44,7 @@ function SignUp() {
         Swal.fire({
             icon: 'error',
             title: "OOPS...",
-            text: 'Todos os campos precisam ser preenchidos, confira seus dados',
+            text: 'Todos os campos precisam ser preenchidos corretamente, confira seus dados, por favor.',
         });
 
         return;
@@ -59,7 +59,7 @@ function SignUp() {
         Swal.fire({
             icon: 'error',
             title: "OOPS...",
-            text: 'Esse email já existe, confira seus dados',
+            text: 'Esse email já existe, confira seus dados, por favor.',
         });
 
         return;
