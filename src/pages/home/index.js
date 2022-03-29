@@ -29,7 +29,9 @@ export default function Home() {
                 text: "An error occured while trying to fetch the trending hashtags, please refresh the page",
             });
         });
+
     }, []);
+
 
     return(
         <>

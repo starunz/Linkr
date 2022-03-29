@@ -137,7 +137,6 @@ export default function UserPage() {
     }
 
 
-
     return(
         <>
             <Header/>
@@ -152,11 +151,11 @@ export default function UserPage() {
                     <UserContainer>
                         <ImageUser src={posts.user[0].photoUrl} /> 
                         <Title>{posts.user[0].userName}'s post</Title> 
-                        {followingsUserLoged.includes(parseInt(id))? (
+                        {auth.id !== parseInt(id) && (followingsUserLoged.includes(parseInt(id)) ? (
                             <Unfollow disabled={isLoadingFollow} onClick={() => unfollowUser(id, auth.token)}>Unfollow</Unfollow>
                         ) : (
                             <Follow disabled={isLoadingFollow} onClick={() => followUser(auth.id, id, auth.token)}>Follow</Follow> 
-                        )}
+                        ))}
                     </UserContainer>
                 }
                 
