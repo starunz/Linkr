@@ -80,12 +80,15 @@ const getUserPosts = (userId) => {
     return promise;
 }
 
-/*const example = (body ,token) => {
-    const configAuth = config(token)
-    const promise = api.post('/checkout', body, configAuth)
-
+const repost = (body, token) => {
+    const promise = api.post(`/post/repost`, body, config(token));
     return promise;
-}*/
+}
+
+const getReposts = (postId, token) => {
+    const promise = api.get(`/posts/${postId}/reposts`, config(token));
+    return promise;
+} 
 
 export {
     signUp,
@@ -99,5 +102,7 @@ export {
     deletePost,
     updatePost,
     getUsers,
-    getUserPosts
+    getUserPosts,
+    repost,
+    getReposts
 }

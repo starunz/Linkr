@@ -2,8 +2,9 @@ import {
     Container, 
     ImageLikeContainer, 
     ImageUser, 
-    TotalLikes,
+    Total,
     LikeTooltip,
+    RepostContainer,
     Main, 
     Title, 
     Text, 
@@ -26,6 +27,7 @@ import { FiHeart } from 'react-icons/fi';
 import { FaHeart } from 'react-icons/fa';
 import { BiEditAlt } from 'react-icons/bi';
 import { AiFillDelete } from 'react-icons/ai';
+import { BiRepost } from 'react-icons/bi';
 
 import ReactHashtag from "@mdnm/react-hashtag";
 import { ThreeDots } from 'react-loader-spinner';
@@ -43,6 +45,7 @@ export default function Post({ post }) {
     const { auth } = useAuth();
     const navigate = useNavigate();
     const [postLikes, setPostLikes] = useState(); 
+    const [totalReposts, setTotalReposts] = useState();
     const [likeLever, setLikeLever] = useState(false);
     const [user, setUser] = useState({});
     const [showConfirmScreen, setShowConfirmScreen] = useState(false);
@@ -50,17 +53,26 @@ export default function Post({ post }) {
     const [isEditing, setIsEditing] = useState(false);
     const inputEditText = useRef(null);
     const [newDescription, setNewDescription] = useState(post.description);
+    const [method, setMethod] = useState();
     
     useEffect(() => {
-        const promise = api.getLikes(post.id, auth.token);
-        promise.then((response) => {
+        const promiseLikes = api.getLikes(post.id, auth.token);
+        promiseLikes.then((response) => {
             setPostLikes(response.data)
         });
-        const promiseTwo = api.getUserData(auth);
-        promiseTwo.then(response => {
+
+        const promiseUser = api.getUserData(auth);
+        promiseUser.then(response => {
             setUser(response.data);
         });
+
+        const promiseRepost = api.getReposts(post.id, auth.token);
+        promiseRepost.then(response => {
+            setTotalReposts(response.data);
+        })
+
     }, [likeLever]);
+
 
     function like() {
         const promise = api.likePost(post.id, auth.id, auth.token);
@@ -73,6 +85,41 @@ export default function Post({ post }) {
         return <Load><ThreeDots color="#FFFFFF" height={50} width={50} /></Load>
     }
 
+    function changeMessageScreenToDelete(){
+        setShowConfirmScreen(true);
+        setMethod("deletePosts");
+    }
+    
+    function changeMessageScreenToRepost(){
+        setShowConfirmScreen(true);
+        setMethod("repost");
+    }
+
+    function repost(postId) {
+        setIsLoading(true);
+        if(!auth.token) return;
+
+        const body = { 
+            userId: auth.id,
+            userPosted: post.userId,
+            postId: postId
+        }
+        
+        const promise = api.repost(body, auth.token);
+
+        promise.then(() => {
+            window.location.reload();
+        }).catch(() => {
+            setIsLoading(false);
+            setShowConfirmScreen(false);
+            Swal.fire({
+                icon: 'error',
+                title: "OOPS...",
+                text: "Something went wrong! Try again!",
+            });
+        });
+    }
+
     function deletePosts(id) {
         setIsLoading(true);
         if(!auth.token) return;
@@ -81,6 +128,7 @@ export default function Post({ post }) {
         promise.then(() => {
             window.location.reload();
         }).catch(() => {
+            setIsLoading(false);
             setShowConfirmScreen(false);
             Swal.fire({
                 icon: 'error',
@@ -130,7 +178,9 @@ export default function Post({ post }) {
             {showConfirmScreen && (
                 <ConfirmScreen 
                     post={post} 
-                    deletePosts={deletePosts} 
+                    method={method} 
+                    deletePost={deletePosts}
+                    repost={repost}
                     setShow={setShowConfirmScreen}
                     isLoading={isLoading}
                 />
@@ -142,18 +192,28 @@ export default function Post({ post }) {
                     <LikeTooltip>
                         <a data-tip={`${postLikes[0].whoLiked}`}>
                                 <FaHeart color="#AC0000" size={20} onClick={() => like()} /> 
-                                <TotalLikes>{postLikes[0].count} likes</TotalLikes>
+                                <Total>{postLikes[0].count} likes</Total>
                         </a>
                     </LikeTooltip>
                     :
                     <LikeTooltip>
                         <a data-tip={`${postLikes[0].whoLiked}`}>
                                 <FiHeart color="#fff" size={20} onClick={() => like()}/>
-                                <TotalLikes>{postLikes[0].count} likes</TotalLikes>
+                                <Total>{postLikes[0].count} likes</Total>
                         </a> 
                     </LikeTooltip>}
                 </Icon>
                 <ReactTooltip class="tooltip" place="bottom" type="light" effect="solid" multiline={true}/>
+
+                <RepostContainer>
+                    <BiRepost color="#fff" size={25} onClick={() => changeMessageScreenToRepost()} ></BiRepost>
+                    {totalReposts ? 
+                        <Total> {totalReposts[0].count} re-post</Total>
+                        : 
+                        ''
+                    }
+                </RepostContainer>    
+            
             </ImageLikeContainer>
 
             <Main>
@@ -162,7 +222,7 @@ export default function Post({ post }) {
                     {post.author === user.userName && (
                         <Icons>
                             <Icon>{isEditing? <BiEditAlt onClick={() => setIsEditing(false)} /> : <BiEditAlt onClick={editPost} />}</Icon>
-                            <Icon><AiFillDelete onClick={() => setShowConfirmScreen(true)}/></Icon>
+                            <Icon><AiFillDelete onClick={() => changeMessageScreenToDelete()}/></Icon>
                         </Icons>
                     )}
                 </Title>
