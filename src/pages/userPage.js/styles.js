@@ -40,8 +40,50 @@ const UserContainer = styled.div`
             align-items: center;
         }
     }
-`
+`;
+
+const Follow = styled.button`
+    width: 112px;
+    height: 31px;
+
+    background: #1877F2;
+    border-radius: 5px;
+    color: #FFFFFF;
+    ${(props) => props.disabled && "opacity: 0.5;"}
+
+    font-family: 'Lato';
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+`;
+
+const Unfollow = styled.button`
+    width: 112px;
+    height: 31px;
+
+    background: #FFFFFF;
+    border-radius: 5px;
+    color: #1877F2;
+    ${(props) => props.disabled && "opacity: 0.5;"}
+
+    font-family: 'Lato';
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+`;
 
 export {
-    UserContainer
+    UserContainer,
+    Follow,
+    Unfollow,
 }
