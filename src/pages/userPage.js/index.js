@@ -147,26 +147,30 @@ export default function UserPage() {
                     <BoxIconInput><AiOutlineSearch /></BoxIconInput>
                 </InputBox>
 
-                <UserContainer>
-                    <ImageUser src={posts.user[0].photoUrl} /> 
-                    <Title>{posts.user[0].userName}'s post</Title>
-                    {followingsUserLoged.includes(parseInt(id))? (
-                        <Unfollow disabled={isLoadingFollow} onClick={() => unfollowUser(id, auth.token)}>Unfollow</Unfollow>
-                    ) : (
-                        <Follow disabled={isLoadingFollow} onClick={() => followUser(auth.id, id, auth.token)}>Follow</Follow> 
-                    )}
-                </UserContainer>
+                
+                {posts.length === 0 ? '' :
+                    <UserContainer>
+                        <ImageUser src={posts.user[0].photoUrl} /> 
+                        <Title>{posts.user[0].userName}'s post</Title> 
+                        {followingsUserLoged.includes(parseInt(id))? (
+                            <Unfollow disabled={isLoadingFollow} onClick={() => unfollowUser(id, auth.token)}>Unfollow</Unfollow>
+                        ) : (
+                            <Follow disabled={isLoadingFollow} onClick={() => followUser(auth.id, id, auth.token)}>Follow</Follow> 
+                        )}
+                    </UserContainer>
+                }
                 
                 <Main>
-                    <ContainerPost>
-                        {(posts.posts.length === 0 && isLoading === false) ? <Message>There are no posts yet</Message> : ""}
-                        {isLoading ? (
-                            <Load><ThreeDots color="#FFFFFF" height={50} width={50} /></Load>
-                        ) : (
-                            posts.posts.map((post, i) => <Post key={i} post={post} />)
-                        )}
-                    </ContainerPost>
-
+                    {posts.length === 0 ? '' :
+                        <ContainerPost>
+                            {(posts.posts.length === 0 && isLoading === false) ? <Message>There are no posts yet</Message> : ""}
+                            {isLoading ? (
+                                <Load><ThreeDots color="#FFFFFF" height={50} width={50} /></Load>
+                            ) : (
+                                posts.posts.map((post, i) => <Post key={i} post={post} />)
+                            )}
+                        </ContainerPost>
+                    }
                     {trendingList.length > 0 &&
                         <Trending hashtagsList={trendingList} />
                     }
