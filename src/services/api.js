@@ -80,6 +80,25 @@ const getUserPosts = (userId) => {
     return promise;
 }
 
+const getFollowingsUser = (userId) => {
+    const promise = api.get(`/follows/${userId}`);
+    return promise;
+}
+
+const postFollow = (followerId, followingId, token) => {
+    const body = {
+        follower: followerId,
+        following: followingId
+    }
+    const promise = api.post('/follows', body, config(token));
+    return promise;
+}
+
+const deleteFollow = (followingId, token) => {
+    const promise = api.delete(`/follows/${followingId}`, config(token));
+    return promise;
+}
+
 /*const example = (body ,token) => {
     const configAuth = config(token)
     const promise = api.post('/checkout', body, configAuth)
@@ -99,5 +118,8 @@ export {
     deletePost,
     updatePost,
     getUsers,
-    getUserPosts
+    getUserPosts,
+    getFollowingsUser,
+    postFollow,
+    deleteFollow,
 }
