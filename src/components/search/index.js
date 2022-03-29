@@ -4,25 +4,31 @@ import {
     SearchContainer, 
     SearchBox, 
     SearchInput, 
-    SearchLink 
+    SearchLink
 } from "./style";
 
 import * as api from '../../services/api';
-
+import useAuth from "../../hooks/useAuth";
 import {DebounceInput} from 'react-debounce-input';
 export default function Search() {
 
     const [userText, setUserText] = useState('');
     const [userList, setUserList] = useState(null);
+    const { auth } = useAuth();
 
     useEffect(() => {
         if(userText.length >= 3)
         {
-            const promise = api.getUsers(userText);
-        promise.then(response => {
-            let users = response.data;
-            if(users.length)
-            setUserList(users);
+            const promise = api.getUsers(auth.id, userText);
+            promise.then(response => {
+            let usersData = response.data;
+            if(usersData.notFollowing.length || usersData.following.length)
+            {
+                for(const user of usersData.following)
+                    user.following = true;
+
+                setUserList([usersData.following.concat(usersData.notFollowing)][0]); 
+            }
             else
             setUserList(null);
              })
@@ -61,6 +67,7 @@ export default function Search() {
                     <SearchLink  key={i} href={`/user/${user.id}`} isLast={i+1 === userList.length ? true : false}>
                         <img src={user.photoUrl} alt={user.name}/>
                             <span>{user.userName}</span>
+                            {user.following && <strong>• following</strong>}
                     </SearchLink>)
                 )}
                 </SearchBox>
