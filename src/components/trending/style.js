@@ -53,6 +53,7 @@ export const TrendingSeparator = styled.hr`
 export const TrendingList = styled.ul`
     display: flex;
     flex-direction: column;
+    font-size: 19px;
 
     margin-left: 16px;
     gap: 15px;

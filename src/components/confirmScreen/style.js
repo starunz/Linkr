@@ -45,7 +45,7 @@ export const Text = styled.span`
 
     color: #FFFFFF;
 
-    @media (max-width: 610px) {
+    @media (max-width: 350px) {
         font-size: 22px;
         line-height: 38px;
     }
