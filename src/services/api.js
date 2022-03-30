@@ -33,7 +33,6 @@ const publishPost = ({token, publishData, id}) => {
 }
 
 const getPosts = (hashtag, token) => {
-    console.log(token)
     let promise = null;
     if(hashtag)
     promise = api.get(`/posts?hashtag=${hashtag}`, config(token));
