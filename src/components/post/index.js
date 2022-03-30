@@ -60,7 +60,7 @@ export default function Post({ post }) {
         promiseTwo.then(response => {
             setUser(response.data);
         });
-    }, [likeLever]);
+    }, [likeLever, auth, post.id]);
 
     function like() {
         const promise = api.likePost(post.id, auth.id, auth.token);
@@ -96,13 +96,12 @@ export default function Post({ post }) {
     }
 
     function updatePosts() {
-        
         setIsLoading(true);
         if(!auth.token) return;
         const promise = api.updatePost(post.id, auth.token, newDescription);
 
         promise.then(response => {
-            window.location.reload();
+            setIsEditing(false);
         }).catch(error => {
             Swal.fire({
                 icon: 'error',
@@ -186,7 +185,7 @@ export default function Post({ post }) {
                         <ReactHashtag
                             renderHashtag={(hashtagValue) => <Hashtag hashtagName={hashtagValue}/>}
                         >
-                            {post.description}
+                            {newDescription}
                         </ReactHashtag>
                     </Text>
                 )}
