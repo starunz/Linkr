@@ -94,7 +94,7 @@ export default function UserPage() {
                 text: "An error occured while trying to fetch the trending hashtags, please refresh the page",
             });
         });
-    }, [auth]);
+    }, [auth, hashtag, id]);
 
     if(posts.length === 0) {
         return <Load><ThreeDots color="#FFFFFF" height={50} width={50} /></Load>
@@ -150,14 +150,13 @@ export default function UserPage() {
                     <UserContainer>
                         <ImageUser src={posts.user[0].photoUrl} /> 
                         <Title>{posts.user[0].userName}'s post</Title> 
-                        {followingsUserLoged.includes(parseInt(id))? (
+                        {auth.id !== parseInt(id) && (followingsUserLoged.includes(parseInt(id)) ? (
                             <Unfollow disabled={isLoadingFollow} onClick={() => unfollowUser(id, auth.token)}>Unfollow</Unfollow>
                         ) : (
                             <Follow disabled={isLoadingFollow} onClick={() => followUser(auth.id, id, auth.token)}>Follow</Follow> 
-                        )}
+                        ))}
                     </UserContainer>
                 }
-
                 
                 <Main>
                     {posts.length === 0 ? '' :

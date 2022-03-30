@@ -11,6 +11,8 @@ export const TrendingBox = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    position: sticky;
+    top: 100px;
 
     word-break: break-all;
 
@@ -25,8 +27,6 @@ export const TrendingContainer = styled.div`
     width: 301px;
     padding-left: 25px;
     display: flex;
-    position: fixed;
-    right: 3%;
 `;
 
 export const TrendingTitle = styled.h1`
@@ -58,6 +58,7 @@ export const TrendingSeparator = styled.hr`
 export const TrendingList = styled.ul`
     display: flex;
     flex-direction: column;
+    font-size: 19px;
 
     margin-left: 16px;
     gap: 15px;

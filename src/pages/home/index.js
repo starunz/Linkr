@@ -29,7 +29,9 @@ export default function Home() {
                 text: "An error occured while trying to fetch the trending hashtags, please refresh the page",
             });
         });
+
     }, []);
+
 
     return(
         <>
@@ -41,7 +43,7 @@ export default function Home() {
             </InputBox>
             <Title>{hashtag ? '# '+hashtag : 'timeline'}</Title>
             <Main>
-                <Timeline />
+                <Timeline setHashtagsLists={setTrendingList}/>
                 {trendingList.length > 0 && 
                 <Trending hashtagsList={trendingList}/>
                 }
