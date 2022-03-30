@@ -57,15 +57,6 @@ export default function UserPage() {
 
         promise.then(response => {
             let posts = response.data;
-            posts.posts.sort(function (a, b) {
-                if (a.createDate < b.createDate) {
-                    return 1;
-                }
-                if (a.createDate > b.createDate) {
-                    return -1;
-                }
-                return 0;
-            });
             if (hashtag)
                 posts = posts.filter(p => { return p.description.indexOf(`#${hashtag}`) > 0 });
             setPosts(posts);
