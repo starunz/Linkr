@@ -32,12 +32,12 @@ const publishPost = ({token, publishData, id}) => {
     return promise;
 }
 
-const getPosts = (hashtag) => {
+const getPosts = (hashtag, token) => {
     let promise = null;
     if(hashtag)
-    promise = api.get(`/posts?hashtag=${hashtag}`);
+    promise = api.get(`/posts?hashtag=${hashtag}`, config(token));
     else
-    promise = api.get('/posts');
+    promise = api.get('/posts', config(token));
     return promise;
 }
 
@@ -60,8 +60,8 @@ const getTrendingHashtags = () => {
     return promise;
 }
 
-const getUsers = (userQuery) => {
-    const promise = api.get(`/users?like=${userQuery}`);
+const getUsers = (userId, userName) => {
+    const promise = api.get(`/users?userId=${userId}&username=${userName}`);
     return promise;
 }
 
@@ -77,6 +77,25 @@ const updatePost = (postId, token, description) => {
 
 const getUserPosts = (userId) => {
     const promise = api.get(`/user/${userId}`);
+    return promise;
+}
+
+const getFollowingsUser = (userId) => {
+    const promise = api.get(`/follows/${userId}`);
+    return promise;
+}
+
+const postFollow = (followerId, followingId, token) => {
+    const body = {
+        follower: followerId,
+        following: followingId
+    }
+    const promise = api.post('/follows', body, config(token));
+    return promise;
+}
+
+const deleteFollow = (followingId, token) => {
+    const promise = api.delete(`/follows/${followingId}`, config(token));
     return promise;
 }
 
@@ -103,6 +122,9 @@ export {
     updatePost,
     getUsers,
     getUserPosts,
+    getFollowingsUser,
+    postFollow,
+    deleteFollow,
     repost,
     getReposts
 }

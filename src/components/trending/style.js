@@ -1,11 +1,8 @@
 import styled from 'styled-components';
 
 export const TrendingBox = styled.div`
-    width: 301px;
+    width: 100%;
     height: 406px;
-
-    //padding-top: 9px;
-    //padding-bottom: 30px;
     background: #171717;
 
     border-radius: 16px;
@@ -14,6 +11,8 @@ export const TrendingBox = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    position: sticky;
+    top: 100px;
 
     word-break: break-all;
 
@@ -22,6 +21,12 @@ export const TrendingBox = styled.div`
     @media (max-width: 800px) {
         display: none;
     }
+`;
+
+export const TrendingContainer = styled.div`
+    width: 301px;
+    padding-left: 25px;
+    display: flex;
 `;
 
 export const TrendingTitle = styled.h1`
@@ -53,6 +58,7 @@ export const TrendingSeparator = styled.hr`
 export const TrendingList = styled.ul`
     display: flex;
     flex-direction: column;
+    font-size: 19px;
 
     margin-left: 16px;
     gap: 15px;

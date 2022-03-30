@@ -115,16 +115,19 @@ export const Text = styled.div`
     }
 `;
 
-export const EditingText = styled.input`
+export const EditingText = styled.textarea`
+    resize: vertical;
     background: #171717;
-
+    width: 100%;
+    max-height: 150px;
     font-family: 'Lato';
     font-style: normal;
     font-weight: 400;
     font-size: 17px;
     line-height: 20px;
 
-    color: #B7B7B7;
+    background: #FFFFFF;
+    border-radius: 7px; 
 
     &:focus {
         box-shadow: 0 0 0 0;

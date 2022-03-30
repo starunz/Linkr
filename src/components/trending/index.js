@@ -3,21 +3,23 @@ import {
     TrendingBox, 
     TrendingTitle, 
     TrendingSeparator, 
-    TrendingList } 
+    TrendingList,
+    TrendingContainer } 
 from "./style";
 
 export default function Trending({hashtagsList}) {
     
     return(
+    <TrendingContainer>
         <TrendingBox>
             <TrendingTitle>trending</TrendingTitle>
-            <TrendingSeparator/>
-            <TrendingList>
-            {(
-                hashtagsList?.map((hash, i) => <Hashtag key={i} hashtagName={'#'+hash.name} />)
-            )}
-            </TrendingList>
-        </TrendingBox>
-                
+                <TrendingSeparator/>
+                    <TrendingList>
+                    {(
+                        hashtagsList?.map((hash, i) => <Hashtag key={i} hashtagName={'#'+hash.name} />)
+                    )}
+                    </TrendingList>
+            </TrendingBox>
+    </TrendingContainer>
     );
 }

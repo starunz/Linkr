@@ -32,6 +32,17 @@ export const SearchLink = styled.a`
         color: #515151;
     }
 
+    strong {
+        width: 140px;
+        height: 18px;
+        font-family: 'Lato';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 19px;
+        line-height: 23px;
+        color: #C5C5C5 !important;
+    }
+
     &:hover
     {
         background-color: #171717;
