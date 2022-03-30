@@ -27,6 +27,15 @@ export default function Timeline({ setHashtagsLists }) {
             
             promise.then(response => {
                 let posts = response.data;
+                posts.sort(function (a, b) {
+                    if (a.createDate < b.createDate) {
+                        return 1;
+                    }
+                    if (a.createDate > b.createDate) {
+                        return -1;
+                    }
+                    return 0;
+                });
                 setPosts(posts);
                 setIsLoading(false);
             }).catch(error => {

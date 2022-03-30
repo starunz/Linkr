@@ -195,7 +195,7 @@ export default function Post({ post, setHashtagsLists }) {
             {post.userRepostName ? 
                 <RepostHeader>
                     <BiRepost color="#fff" size={25} ></BiRepost>
-                    <span>Re-posted by <strong>{post.userRepostName}</strong> </span>
+                    <span>Re-posted by <strong>{post.userRepostId === auth.id ? 'You' : post.userRepostName}</strong> </span>
                 </RepostHeader> 
                 :
                 ''
@@ -234,7 +234,7 @@ export default function Post({ post, setHashtagsLists }) {
                     <RepostContainer>
                         <BiRepost color="#fff" size={25} onClick={() => changeMessageScreenToRepost()} ></BiRepost>
                         {totalReposts ? 
-                            <Total> {totalReposts[0].count} re-post</Total>
+                            <Total> {totalReposts[0].count} {totalReposts[0].count > 1 ? 're-posts' : 're-post' }</Total>
                             : 
                             ''
                         }
@@ -245,13 +245,15 @@ export default function Post({ post, setHashtagsLists }) {
                 <Main>
                     <Title >
                         <span onClick={() => navigate(`/user/${post.userId}`)}>{post.author}</span>
-                        {post.author === user.userName && (
-                            <Icons>
-                                <Icon>{isEditing? <BiEditAlt onClick={() => setIsEditing(false)} /> : <BiEditAlt onClick={editPost} />}</Icon>
-                                <Icon><AiFillDelete onClick={() => changeMessageScreenToDelete()}/></Icon>
-                            </Icons>
-                        )}
+                        { !post.userRepostName ? 
+                            post.author === user.userName && (
+                                <Icons>
+                                    <Icon>{isEditing? <BiEditAlt onClick={() => setIsEditing(false)} /> : <BiEditAlt onClick={editPost} />}</Icon>
+                                    <Icon><AiFillDelete onClick={() => changeMessageScreenToDelete()}/></Icon>
+                                </Icons>
+                        ) : ''}
                     </Title>
+
                     {isEditing? (
                         <EditingText 
                             ref={inputEditText} 

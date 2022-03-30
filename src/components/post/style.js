@@ -11,7 +11,7 @@ export const Container = styled.div`
 
     display: flex;
 
-    z-index: 2;
+    z-index: 1;
 
     @media (max-width: 610px) {
         border-radius: 0px;
@@ -20,7 +20,6 @@ export const Container = styled.div`
 `;
 
 export const BackgroundContainer = styled.div`
-    z-index: 1;
 
     width: 611px;
     height: auto;
@@ -45,19 +44,16 @@ export const RepostHeader = styled.div`
     gap: 6px;
 
     color: #fff;
-
-    font-family: 'Lato';
-    font-size: 11px;
-    font-style: normal;
-    line-height: 13px;
-    letter-spacing: 0em;
-    text-align: left;
     
     span {
+        font-family: 'Lato';
+        font-size: 11px;
         font-weight: 400;
     }
 
     strong {
+        font-family: 'Lato';
+        font-size: 11px;
         font-weight: 700;
     }
 `;
@@ -98,6 +94,11 @@ export const Total = styled.div`
     margin-top: 5px;
 
     color: #fff;
+
+    @media (max-width: 610px) {
+        width: 49px;
+        text-align: center;
+    }
 `;
 
 export const LikeTooltip = styled.div`
@@ -112,6 +113,8 @@ export const RepostContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    cursor: pointer;
 `
 
 export const Main = styled.div`
@@ -128,16 +131,17 @@ export const Title = styled.div`
     height: 23px;
 
     span {
-    font-family: 'Lato';
-    font-size: 19px;
-    line-height: 23px;
+        font-family: 'Lato';
+        font-size: 19px;
+        line-height: 23px;
+        cursor: pointer;
     }
+
     color: #FFFFFF;
     
     display: flex;
     justify-content: space-between;
 
-    cursor: pointer;
 
     @media (max-width: 610px) {
         font-size: 17px;
