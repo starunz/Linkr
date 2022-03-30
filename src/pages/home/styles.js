@@ -22,7 +22,6 @@ export const Main = styled.div`
     max-width: 100%;
 
     padding-bottom: 50px;
-    gap: 25px;
     
     display: flex;
 `;

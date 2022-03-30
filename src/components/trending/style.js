@@ -1,11 +1,8 @@
 import styled from 'styled-components';
 
 export const TrendingBox = styled.div`
-    width: 301px;
+    width: 100%;
     height: 406px;
-
-    //padding-top: 9px;
-    //padding-bottom: 30px;
     background: #171717;
 
     border-radius: 16px;
@@ -22,6 +19,14 @@ export const TrendingBox = styled.div`
     @media (max-width: 800px) {
         display: none;
     }
+`;
+
+export const TrendingContainer = styled.div`
+    width: 301px;
+    padding-left: 25px;
+    display: flex;
+    position: fixed;
+    right: 3%;
 `;
 
 export const TrendingTitle = styled.h1`

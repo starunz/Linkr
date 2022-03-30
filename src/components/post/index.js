@@ -95,8 +95,8 @@ export default function Post({ post }) {
         inputEditText.current?.focus();
     }
 
-    function updatePosts(e) {
-        e.preventDefault();
+    function updatePosts() {
+        
         setIsLoading(true);
         if(!auth.token) return;
         const promise = api.updatePost(post.id, auth.token, newDescription);
@@ -111,6 +111,12 @@ export default function Post({ post }) {
             });
             setIsLoading(false);
         });
+    }
+
+    function onBeforeUpdatePosts(e)
+    {
+        e.preventDefault();
+        updatePosts();
     }
 
     document.onkeydown = function handleKeyDown(e){
@@ -167,15 +173,14 @@ export default function Post({ post }) {
                     )}
                 </Title>
                 {isEditing? (
-                    <form onSubmit={e => updatePosts(e)}>
-                        <EditingText 
-                            ref={inputEditText} 
-                            type="text" 
-                            value={newDescription}
-                            onChange={e => setNewDescription(e.target.value)}
-                            disabled={isLoading}
-                        />
-                    </form>
+                    <EditingText 
+                        ref={inputEditText} 
+                        type="text" 
+                        value={newDescription}
+                        onChange={e => setNewDescription(e.target.value)}
+                        disabled={isLoading}
+                        onKeyPress={(e) => { e.key === 'Enter' && onBeforeUpdatePosts(e); }}
+                    />
                 ) : (
                     <Text>
                         <ReactHashtag

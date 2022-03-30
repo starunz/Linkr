@@ -60,8 +60,8 @@ const getTrendingHashtags = () => {
     return promise;
 }
 
-const getUsers = (userQuery) => {
-    const promise = api.get(`/users?like=${userQuery}`);
+const getUsers = (userId, userName) => {
+    const promise = api.get(`/users?userId=${userId}&username=${userName}`);
     return promise;
 }
 
