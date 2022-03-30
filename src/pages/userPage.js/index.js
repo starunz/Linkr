@@ -57,6 +57,15 @@ export default function UserPage() {
 
         promise.then(response => {
             let posts = response.data;
+            posts.posts.sort(function (a, b) {
+                if (a.createDate < b.createDate) {
+                    return 1;
+                }
+                if (a.createDate > b.createDate) {
+                    return -1;
+                }
+                return 0;
+            });
             if (hashtag)
                 posts = posts.filter(p => { return p.description.indexOf(`#${hashtag}`) > 0 });
             setPosts(posts);
@@ -95,10 +104,6 @@ export default function UserPage() {
             });
         });
     }, [auth, hashtag, id]);
-
-    if(posts.length === 0) {
-        return <Load><ThreeDots color="#FFFFFF" height={50} width={50} /></Load>
-    }
 
     function followUser(followerId, followingId, token){
         setIsLoadingFollow(true);
