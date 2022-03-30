@@ -114,7 +114,7 @@ export const RepostContainer = styled.div`
     flex-direction: column;
     align-items: center;
 
-    cursor: pointer;
+    cursor: ${props => !props.isRepost ? 'pointer' : 'auto' };
 `
 
 export const Main = styled.div`
@@ -279,7 +279,7 @@ export const TextLink = styled.span`
 
 export const Icon = styled.div`
     &:hover {
-        cursor: pointer;
+        cursor: ${props => !props.isRepost ? 'pointer' : 'auto' };
     }
 `;
 

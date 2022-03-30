@@ -213,26 +213,26 @@ export default function Post({ post, setHashtagsLists }) {
                 )}
                 <ImageLikeContainer>
                     <ImageUser src={post.photoUrl} alt={"user Photo"}/>
-                    <Icon>
+                    <Icon isRepost={post.userRepostName}>
                     {postLikes[0].isLiked ? 
-                        <LikeTooltip>
-                            <a data-tip={`${postLikes[0].whoLiked}`}>
-                                    <FaHeart color="#AC0000" size={20} onClick={() => like()} /> 
+                        <LikeTooltip >
+                                <a data-tip={ !post.userRepostName ? `${postLikes[0].whoLiked}` : ''}>
+                                    <FaHeart color="#AC0000" size={20} onClick={() => !post.userRepostName ? like() : ''} /> 
                                     <Total>{postLikes[0].count} likes</Total>
                             </a>
                         </LikeTooltip>
                         :
                         <LikeTooltip>
-                            <a data-tip={`${postLikes[0].whoLiked}`}>
-                                    <FiHeart color="#fff" size={20} onClick={() => like()}/>
+                                <a data-tip={ !post.userRepostName ? `${postLikes[0].whoLiked}` : ''}>
+                                    <FiHeart color="#fff" size={20} onClick={() => !post.userRepostName ? like() : ''}/>
                                     <Total>{postLikes[0].count} likes</Total>
                             </a> 
                         </LikeTooltip>}
                     </Icon>
                     <ReactTooltip class="tooltip" place="bottom" type="light" effect="solid" multiline={true}/>
 
-                    <RepostContainer>
-                        <BiRepost color="#fff" size={25} onClick={() => changeMessageScreenToRepost()} ></BiRepost>
+                    <RepostContainer isRepost={post.userRepostName}>
+                        <BiRepost color="#fff" size={25} onClick={() => !post.userRepostName ? changeMessageScreenToRepost() : ''} ></BiRepost>
                         {totalReposts ? 
                             <Total> {totalReposts[0].count} {totalReposts[0].count > 1 ? 're-posts' : 're-post' }</Total>
                             : 
