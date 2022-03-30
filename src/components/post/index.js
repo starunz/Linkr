@@ -38,7 +38,7 @@ import * as api from '../../services/api';
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Post({ post }) {
+export default function Post({ post, setHashtagsLists }) {
 
     const { auth } = useAuth();
     const navigate = useNavigate();
@@ -102,6 +102,18 @@ export default function Post({ post }) {
 
         promise.then(response => {
             setIsEditing(false);
+            setIsLoading(false);
+            const promise = api.getTrendingHashtags();
+
+            promise.then(response => {
+                setHashtagsLists(response.data);
+            }).catch(error => {
+                Swal.fire({
+                    icon: 'error',
+                    title: "OOPS...",
+                    text: "An error occured while trying to fetch the trending hashtags, please refresh the page",
+                });
+            });
         }).catch(error => {
             Swal.fire({
                 icon: 'error',

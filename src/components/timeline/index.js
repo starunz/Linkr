@@ -8,7 +8,7 @@ import { useParams } from "react-router-dom";
 import Swal from 'sweetalert2';
 import useAuth from "../../hooks/useAuth";
 
-export default function Timeline() {
+export default function Timeline({ setHashtagsLists }) {
 
     const [posts, setPosts] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -66,7 +66,7 @@ export default function Timeline() {
             {isLoading? (
                 <Load><ThreeDots color="#FFFFFF" height={50} width={50} /></Load>
             ) : (
-                posts.map((post, i) => <Post key={i} post={post} />)
+                posts.map((post, i) => <Post key={i} post={post} setHashtagsLists={setHashtagsLists} />)
             )}
         </Container>
     );

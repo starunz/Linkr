@@ -43,7 +43,7 @@ export default function Home() {
             </InputBox>
             <Title>{hashtag ? '# '+hashtag : 'timeline'}</Title>
             <Main>
-                <Timeline />
+                <Timeline setHashtagsLists={setTrendingList}/>
                 {trendingList.length > 0 && 
                 <Trending hashtagsList={trendingList}/>
                 }
