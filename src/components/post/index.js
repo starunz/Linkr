@@ -17,6 +17,8 @@ import {
     Icon,
     Icons,
     EditingText,
+    BackgroundContainer,
+    RepostHeader
 } from "./style";
 import { Load } from "../timeline/style";
 import Hashtag from "../hashtag";
@@ -189,97 +191,107 @@ export default function Post({ post, setHashtagsLists }) {
     }
 
     return(
-        <Container>
-            {showConfirmScreen && (
-                <ConfirmScreen 
-                    post={post} 
-                    method={method} 
-                    deletePost={deletePosts}
-                    repost={repost}
-                    setShow={setShowConfirmScreen}
-                    isLoading={isLoading}
-                />
-            )}
-            <ImageLikeContainer>
-                <ImageUser src={post.photoUrl} alt={"user Photo"}/>
-                <Icon>
-                {postLikes[0].isLiked ? 
-                    <LikeTooltip>
-                        <a data-tip={`${postLikes[0].whoLiked}`}>
-                                <FaHeart color="#AC0000" size={20} onClick={() => like()} /> 
-                                <Total>{postLikes[0].count} likes</Total>
-                        </a>
-                    </LikeTooltip>
-                    :
-                    <LikeTooltip>
-                        <a data-tip={`${postLikes[0].whoLiked}`}>
-                                <FiHeart color="#fff" size={20} onClick={() => like()}/>
-                                <Total>{postLikes[0].count} likes</Total>
-                        </a> 
-                    </LikeTooltip>}
-                </Icon>
-                <ReactTooltip class="tooltip" place="bottom" type="light" effect="solid" multiline={true}/>
-
-                <RepostContainer>
-                    <BiRepost color="#fff" size={25} onClick={() => changeMessageScreenToRepost()} ></BiRepost>
-                    {totalReposts ? 
-                        <Total> {totalReposts[0].count} re-post</Total>
-                        : 
-                        ''
-                    }
-                </RepostContainer>    
-            
-            </ImageLikeContainer>
-
-            <Main>
-                <Title >
-                    <span onClick={() => navigate(`/user/${post.userId}`)}>{post.author}</span>
-                    {post.author === user.userName && (
-                        <Icons>
-                            <Icon>{isEditing? <BiEditAlt onClick={() => setIsEditing(false)} /> : <BiEditAlt onClick={editPost} />}</Icon>
-                            <Icon><AiFillDelete onClick={() => changeMessageScreenToDelete()}/></Icon>
-                        </Icons>
-                    )}
-                </Title>
-                {isEditing? (
-                    <EditingText 
-                        ref={inputEditText} 
-                        type="text" 
-                        value={newDescription}
-                        onChange={e => setNewDescription(e.target.value)}
-                        disabled={isLoading}
-                        onKeyPress={(e) => { e.key === 'Enter' && onBeforeUpdatePosts(e); }}
+        <BackgroundContainer > 
+            {post.userRepostName ? 
+                <RepostHeader>
+                    <BiRepost color="#fff" size={25} ></BiRepost>
+                    <span>Re-posted by <strong>{post.userRepostName}</strong> </span>
+                </RepostHeader> 
+                :
+                ''
+            }    
+            <Container>
+                {showConfirmScreen && (
+                    <ConfirmScreen 
+                        post={post} 
+                        method={method} 
+                        deletePost={deletePosts}
+                        repost={repost}
+                        setShow={setShowConfirmScreen}
+                        isLoading={isLoading}
                     />
-                ) : (
-                    <Text>
-                        <ReactHashtag
-                            renderHashtag={(hashtagValue) => <Hashtag hashtagName={hashtagValue}/>}
-                        >
-                            {newDescription}
-                        </ReactHashtag>
-                    </Text>
                 )}
+                <ImageLikeContainer>
+                    <ImageUser src={post.photoUrl} alt={"user Photo"}/>
+                    <Icon>
+                    {postLikes[0].isLiked ? 
+                        <LikeTooltip>
+                            <a data-tip={`${postLikes[0].whoLiked}`}>
+                                    <FaHeart color="#AC0000" size={20} onClick={() => like()} /> 
+                                    <Total>{postLikes[0].count} likes</Total>
+                            </a>
+                        </LikeTooltip>
+                        :
+                        <LikeTooltip>
+                            <a data-tip={`${postLikes[0].whoLiked}`}>
+                                    <FiHeart color="#fff" size={20} onClick={() => like()}/>
+                                    <Total>{postLikes[0].count} likes</Total>
+                            </a> 
+                        </LikeTooltip>}
+                    </Icon>
+                    <ReactTooltip class="tooltip" place="bottom" type="light" effect="solid" multiline={true}/>
 
-                <LinkContainer href={post.link} target="_blank">
+                    <RepostContainer>
+                        <BiRepost color="#fff" size={25} onClick={() => changeMessageScreenToRepost()} ></BiRepost>
+                        {totalReposts ? 
+                            <Total> {totalReposts[0].count} re-post</Total>
+                            : 
+                            ''
+                        }
+                    </RepostContainer>    
+                
+                </ImageLikeContainer>
 
-                    <MainLink>
-
-                        <TitleLink>{post.titleLink}</TitleLink>
-                        <TextLink>
-                            {post.descriptionLinK}
-                            <br /> <br /> 
-                            {post.link}
-                        </TextLink>
-
-                    </MainLink>
-
-                    {post.imageLink === ''? (
-                        <NotImage><AiOutlineFileImage size="36px" /><span>no image</span></NotImage>
+                <Main>
+                    <Title >
+                        <span onClick={() => navigate(`/user/${post.userId}`)}>{post.author}</span>
+                        {post.author === user.userName && (
+                            <Icons>
+                                <Icon>{isEditing? <BiEditAlt onClick={() => setIsEditing(false)} /> : <BiEditAlt onClick={editPost} />}</Icon>
+                                <Icon><AiFillDelete onClick={() => changeMessageScreenToDelete()}/></Icon>
+                            </Icons>
+                        )}
+                    </Title>
+                    {isEditing? (
+                        <EditingText 
+                            ref={inputEditText} 
+                            type="text" 
+                            value={newDescription}
+                            onChange={e => setNewDescription(e.target.value)}
+                            disabled={isLoading}
+                            onKeyPress={(e) => { e.key === 'Enter' && onBeforeUpdatePosts(e); }}
+                        />
                     ) : (
-                        <ImageLink src={post.imageLink}/>
+                        <Text>
+                            <ReactHashtag
+                                renderHashtag={(hashtagValue) => <Hashtag hashtagName={hashtagValue}/>}
+                            >
+                                {newDescription}
+                            </ReactHashtag>
+                        </Text>
                     )}
-                </LinkContainer>
-            </Main>
-        </Container>
+
+                    <LinkContainer href={post.link} target="_blank">
+
+                        <MainLink>
+
+                            <TitleLink>{post.titleLink}</TitleLink>
+                            <TextLink>
+                                {post.descriptionLinK}
+                                <br /> <br /> 
+                                {post.link}
+                            </TextLink>
+
+                        </MainLink>
+
+                        {post.imageLink === ''? (
+                            <NotImage><AiOutlineFileImage size="36px" /><span>no image</span></NotImage>
+                        ) : (
+                            <ImageLink src={post.imageLink}/>
+                        )}
+                    </LinkContainer>
+                </Main>
+            </Container>
+        </BackgroundContainer>
     );
 }

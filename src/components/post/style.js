@@ -11,9 +11,54 @@ export const Container = styled.div`
 
     display: flex;
 
+    z-index: 2;
+
     @media (max-width: 610px) {
         border-radius: 0px;
         gap: 14px;
+    }
+`;
+
+export const BackgroundContainer = styled.div`
+    z-index: 1;
+
+    width: 611px;
+    height: auto;
+    max-width: 100%;
+
+    border-radius: 16px;
+
+    background-color: #1E1E1E;
+
+    @media (max-width: 610px) {
+        border-radius: 0px;
+    }
+`;
+
+export const RepostHeader = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    height: 33px;
+    padding: 12px;
+    gap: 6px;
+
+    color: #fff;
+
+    font-family: 'Lato';
+    font-size: 11px;
+    font-style: normal;
+    line-height: 13px;
+    letter-spacing: 0em;
+    text-align: left;
+    
+    span {
+        font-weight: 400;
+    }
+
+    strong {
+        font-weight: 700;
     }
 `;
 
