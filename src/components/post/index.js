@@ -38,6 +38,9 @@ import * as api from '../../services/api';
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { IoChatbubblesOutline } from "react-icons/io5";
+import Comments from "../comments";
+
 export default function Post({ post, setHashtagsLists }) {
 
     const { auth } = useAuth();
@@ -50,6 +53,9 @@ export default function Post({ post, setHashtagsLists }) {
     const [isEditing, setIsEditing] = useState(false);
     const inputEditText = useRef(null);
     const [newDescription, setNewDescription] = useState(post.description);
+
+    const [commentState, setCommentState] = useState(false)
+    const [commentsList, setCommentsList] = useState([])
     
     useEffect(() => {
         const promise = api.getLikes(post.id, auth.token);
@@ -142,86 +148,109 @@ export default function Post({ post, setHashtagsLists }) {
         }
     }
 
+    function showComments() {
+        if (commentState) {
+          setCommentState(!commentState)
+        }
+        else {
+          setCommentState(!commentState)
+        }
+      }
+
     return(
-        <Container>
-            {showConfirmScreen && (
-                <ConfirmScreen 
-                    post={post} 
-                    deletePosts={deletePosts} 
-                    setShow={setShowConfirmScreen}
-                    isLoading={isLoading}
-                />
-            )}
-            <ImageLikeContainer>
-                <ImageUser src={post.photoUrl} alt={"user Photo"}/>
-                <Icon>
-                {postLikes[0].isLiked ? 
-                    <LikeTooltip>
-                        <a data-tip={`${postLikes[0].whoLiked}`}>
-                                <FaHeart color="#AC0000" size={20} onClick={() => like()} /> 
-                                <TotalLikes>{postLikes[0].count} likes</TotalLikes>
-                        </a>
-                    </LikeTooltip>
-                    :
-                    <LikeTooltip>
-                        <a data-tip={`${postLikes[0].whoLiked}`}>
-                                <FiHeart color="#fff" size={20} onClick={() => like()}/>
-                                <TotalLikes>{postLikes[0].count} likes</TotalLikes>
-                        </a> 
-                    </LikeTooltip>}
-                </Icon>
-                <ReactTooltip class="tooltip" place="bottom" type="light" effect="solid" multiline={true}/>
-            </ImageLikeContainer>
-
-            <Main>
-                <Title >
-                    <span onClick={() => navigate(`/user/${post.userId}`)}>{post.author}</span>
-                    {post.author === user.userName && (
-                        <Icons>
-                            <Icon>{isEditing? <BiEditAlt onClick={() => setIsEditing(false)} /> : <BiEditAlt onClick={editPost} />}</Icon>
-                            <Icon><AiFillDelete onClick={() => setShowConfirmScreen(true)}/></Icon>
-                        </Icons>
-                    )}
-                </Title>
-                {isEditing? (
-                    <EditingText 
-                        ref={inputEditText} 
-                        type="text" 
-                        value={newDescription}
-                        onChange={e => setNewDescription(e.target.value)}
-                        disabled={isLoading}
-                        onKeyPress={(e) => { e.key === 'Enter' && onBeforeUpdatePosts(e); }}
+        <>
+        
+            <Container>
+                {showConfirmScreen && (
+                    <ConfirmScreen 
+                        post={post} 
+                        deletePosts={deletePosts} 
+                        setShow={setShowConfirmScreen}
+                        isLoading={isLoading}
                     />
-                ) : (
-                    <Text>
-                        <ReactHashtag
-                            renderHashtag={(hashtagValue) => <Hashtag hashtagName={hashtagValue}/>}
-                        >
-                            {newDescription}
-                        </ReactHashtag>
-                    </Text>
                 )}
+                <ImageLikeContainer>
+                    <ImageUser src={post.photoUrl} alt={"user Photo"}/>
+                    <Icon>
+                    {postLikes[0].isLiked ? 
+                        <LikeTooltip>
+                            <a data-tip={`${postLikes[0].whoLiked}`}>
+                                    <FaHeart color="#AC0000" size={20} onClick={() => like()} /> 
+                                    <TotalLikes>{postLikes[0].count} likes</TotalLikes>
+                            </a>
+                        </LikeTooltip>
+                        :
+                        <LikeTooltip>
+                            <a data-tip={`${postLikes[0].whoLiked}`}>
+                                    <FiHeart color="#fff" size={20} onClick={() => like()}/>
+                                    <TotalLikes>{postLikes[0].count} likes</TotalLikes>
+                            </a> 
+                        </LikeTooltip>}
+                    </Icon>
+                    <ReactTooltip class="tooltip" place="bottom" type="light" effect="solid" multiline={true}/>
 
-                <LinkContainer href={post.link} target="_blank">
+                    
+                    <IoChatbubblesOutline size={20} color="ffffff" onClick={() => showComments()}/>
+                    <TotalLikes>comments</TotalLikes>
+                
+                </ImageLikeContainer>
 
-                    <MainLink>
-
-                        <TitleLink>{post.titleLink}</TitleLink>
-                        <TextLink>
-                            {post.descriptionLinK}
-                            <br /> <br /> 
-                            {post.link}
-                        </TextLink>
-
-                    </MainLink>
-
-                    {post.imageLink === ''? (
-                        <NotImage><AiOutlineFileImage size="36px" /><span>no image</span></NotImage>
+                <Main>
+                    <Title >
+                        <span onClick={() => navigate(`/user/${post.userId}`)}>{post.author}</span>
+                        {post.author === user.userName && (
+                            <Icons>
+                                <Icon>{isEditing? <BiEditAlt onClick={() => setIsEditing(false)} /> : <BiEditAlt onClick={editPost} />}</Icon>
+                                <Icon><AiFillDelete onClick={() => setShowConfirmScreen(true)}/></Icon>
+                            </Icons>
+                        )}
+                    </Title>
+                    {isEditing? (
+                        <EditingText 
+                            ref={inputEditText} 
+                            type="text" 
+                            value={newDescription}
+                            onChange={e => setNewDescription(e.target.value)}
+                            disabled={isLoading}
+                            onKeyPress={(e) => { e.key === 'Enter' && onBeforeUpdatePosts(e); }}
+                        />
                     ) : (
-                        <ImageLink src={post.imageLink}/>
+                        <Text>
+                            <ReactHashtag
+                                renderHashtag={(hashtagValue) => <Hashtag hashtagName={hashtagValue}/>}
+                            >
+                                {newDescription}
+                            </ReactHashtag>
+                        </Text>
                     )}
-                </LinkContainer>
-            </Main>
-        </Container>
+
+                    <LinkContainer href={post.link} target="_blank">
+
+                        <MainLink>
+
+                            <TitleLink>{post.titleLink}</TitleLink>
+                            <TextLink>
+                                {post.descriptionLinK}
+                                <br /> <br /> 
+                                {post.link}
+                            </TextLink>
+
+                        </MainLink>
+
+                        {post.imageLink === ''? (
+                            <NotImage><AiOutlineFileImage size="36px" /><span>no image</span></NotImage>
+                        ) : (
+                            <ImageLink src={post.imageLink}/>
+                        )}
+                    </LinkContainer>
+                </Main>
+            </Container>
+
+            <Comments
+                commentState={commentState}
+                commentsList={commentsList}
+                setCommentsList={setCommentsList}
+            />
+        </>
     );
 }
