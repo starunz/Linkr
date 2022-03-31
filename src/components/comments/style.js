@@ -65,6 +65,7 @@ const Comment = styled.div`
         width: 39px;
         height: 39px;
         border-radius: 50%;
+        margin: 0 6px 0 33px;
     }
     h4 {
         color: #F3F3F3;
@@ -72,10 +73,17 @@ const Comment = styled.div`
         max-width: 510px;
         word-break: break-word;
         cursor: pointer;
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+        p {
+            color: #565656;
+        }
     }
     span {
-        color: #565656;
-
+        color: #fff;
+       
+        
     }
     p {
         color: #ACACAC;
@@ -98,7 +106,8 @@ const Comment = styled.div`
 
 const WriteComment = styled.form`
     height: 83px;
-    width: 600px;
+    width: 95%;
+    padding-left: 33px;
 
     position: relative;
     display: flex;
@@ -111,10 +120,6 @@ const WriteComment = styled.form`
         background-color: #252525;
         border-radius: 8px;
         color: #ACACAC;
-
-        @media (max-width: 635px) {
-        width: 100%;
-        }
     }
 
     input::placeholder {

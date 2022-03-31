@@ -18,7 +18,8 @@ import {
     Icons,
     EditingText,
     BackgroundContainer,
-    RepostHeader
+    RepostHeader,
+    SuportContainer
 } from "./style";
 import { Load } from "../timeline/style";
 import Hashtag from "../hashtag";
@@ -51,7 +52,7 @@ export default function Post({ post, setHashtagsLists }) {
     const navigate = useNavigate();
 
     const [postLikes, setPostLikes] = useState(); 
-    const [likeLever, setLikeLever] = useState(false);
+    const [lever, setLever] = useState(false);
     const [totalComments, setTotalComments] = useState();
     const [totalReposts, setTotalReposts] = useState();
     const [user, setUser] = useState({});
@@ -62,7 +63,6 @@ export default function Post({ post, setHashtagsLists }) {
     const [newDescription, setNewDescription] = useState(post.description);
 
     const [commentState, setCommentState] = useState(false)
-    const [commentsList, setCommentsList] = useState([])
     const [method, setMethod] = useState();
     
     useEffect(() => {
@@ -85,12 +85,12 @@ export default function Post({ post, setHashtagsLists }) {
         promiseComents.then((response) => {
             setTotalComments(response.data.length);
         })
-    }, [likeLever, auth, post.id]);
+    }, [lever, auth, post.id]);
 
     function like() {
         const promise = api.likePost(post.id, auth.id, auth.token);
         promise.then(() => {
-            setLikeLever(!likeLever)
+            setLever(!lever)
         })
     }
 
@@ -260,7 +260,7 @@ export default function Post({ post, setHashtagsLists }) {
                     </RepostContainer>
 
                     <RepostContainer isRepost={post.userRepostName}>
-                        <BiRepost color="#fff" size={25} onClick={() => !post.userRepostName ? changeMessageScreenToRepost() : ''} ></BiRepost>
+                        <BiRepost color="#fff" size={20} onClick={() => !post.userRepostName ? changeMessageScreenToRepost() : ''} ></BiRepost>
                         {totalReposts ? 
                             <Total> {totalReposts[0].count} {totalReposts[0].count > 1 ? 're-posts' : 're-post' }</Total>
                             : 
@@ -300,7 +300,7 @@ export default function Post({ post, setHashtagsLists }) {
                             </ReactHashtag>
                         </Text>
                     )}
-
+                        <SuportContainer>
                     <LinkContainer href={post.link} target="_blank">
 
                         <MainLink>
@@ -320,15 +320,15 @@ export default function Post({ post, setHashtagsLists }) {
                             <ImageLink src={post.imageLink}/>
                         )}
                     </LinkContainer>
+                    </SuportContainer>
                 </Main>
             </Container>
         </BackgroundContainer>
         <Comments
             commentState={commentState}
-            commentsList={commentsList}
-            setCommentsList={setCommentsList}
             postId={post.id}
             isRepost={post.userRepostName}
+            whoPosted={post.userId}
         />
 
         </>
