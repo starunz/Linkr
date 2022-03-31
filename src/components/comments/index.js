@@ -30,6 +30,12 @@ export default function Comments({commentState, postId, isRepost, whoPosted}) {
 
         promiseComents.then((response) => {
             setComments(response.data)
+        }).catch(() => {
+            Swal.fire({
+                icon: 'error',
+                title: "OOPS...",
+                text: "An error occured while trying to fetch comment, please refresh the page",
+            });
         });
 
         const promise = api.getUserData(auth);
@@ -51,7 +57,6 @@ export default function Comments({commentState, postId, isRepost, whoPosted}) {
         
     }, [lever])
 
-
     function createComment(e){
         e.preventDefault();
         const body = { text: text }
@@ -61,7 +66,13 @@ export default function Comments({commentState, postId, isRepost, whoPosted}) {
         promise.then(() => {
             setLever(!lever);
             setText('');
-        })
+        }).catch(() => {
+            Swal.fire({
+                icon: 'error',
+                title: "OOPS...",
+                text: "An error occured while trying to create comment, please refresh the page",
+            });
+        });
     }
     
     return (
