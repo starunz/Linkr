@@ -49,9 +49,11 @@ export default function Post({ post, setHashtagsLists }) {
 
     const { auth } = useAuth();
     const navigate = useNavigate();
+
     const [postLikes, setPostLikes] = useState(); 
-    const [totalReposts, setTotalReposts] = useState();
     const [likeLever, setLikeLever] = useState(false);
+    const [totalComments, setTotalComments] = useState();
+    const [totalReposts, setTotalReposts] = useState();
     const [user, setUser] = useState({});
     const [showConfirmScreen, setShowConfirmScreen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -78,6 +80,11 @@ export default function Post({ post, setHashtagsLists }) {
         promiseRepost.then(response => {
             setTotalReposts(response.data);
         });
+
+        const promiseComents = api.getComments(post.id);
+        promiseComents.then((response) => {
+            setTotalComments(response.data.length);
+        })
     }, [likeLever, auth, post.id]);
 
     function like() {
@@ -249,7 +256,7 @@ export default function Post({ post, setHashtagsLists }) {
                     
                     <RepostContainer>
                         <IoChatbubblesOutline size={20} color="ffffff" onClick={() => showComments()}/>
-                        <Total>comments</Total>
+                        <Total> {totalComments} comments</Total>
                     </RepostContainer>
 
                     <RepostContainer isRepost={post.userRepostName}>
@@ -320,6 +327,8 @@ export default function Post({ post, setHashtagsLists }) {
             commentState={commentState}
             commentsList={commentsList}
             setCommentsList={setCommentsList}
+            postId={post.id}
+            isRepost={post.userRepostName}
         />
 
         </>

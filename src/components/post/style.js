@@ -114,6 +114,8 @@ export const RepostContainer = styled.div`
     flex-direction: column;
     align-items: center;
 
+    width: 69px;
+
     cursor: ${props => !props.isRepost ? 'pointer' : 'auto' };
 `
 

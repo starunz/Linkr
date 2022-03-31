@@ -109,6 +109,16 @@ const getReposts = (postId, token) => {
     return promise;
 } 
 
+const createComment = (postId, body, token) => {
+    const promise = api.post(`/post/${postId}/comment`, body, config(token));
+    return promise;
+}
+
+const getComments = (postId) => {
+    const promise = api.get(`/post/${postId}/comments`);
+    return promise;
+}
+
 export {
     signUp,
     login,
@@ -126,5 +136,7 @@ export {
     postFollow,
     deleteFollow,
     repost,
-    getReposts
+    getReposts,
+    createComment,
+    getComments
 }

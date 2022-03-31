@@ -11,12 +11,22 @@ import {
     IconSendComment
  } from "./style";
 
+import * as api from '../../services/api';
 
-export default function Comments({commentState, commentsList, setCommentsList }) {
+export default function Comments({commentState, commentsList, setCommentsList, postId, isRepost }) {
     
     const [text, setText] = useState("");
     const [following, setFollowing] = useState([]);
+    const [comments, setComments] = useState();
 
+    useEffect(() => {
+        const promiseComents = api.getComments(postId);
+
+        promiseComents.then((response) => {
+            setComments(response.data);
+        })
+
+    }, [])
     
     return (
         <>
@@ -93,20 +103,23 @@ export default function Comments({commentState, commentsList, setCommentsList })
                             <p>ueeeee</p>
                         </div>
                     </Comment>    
-                </BoxScroller>    
-                <WriteComment >
-                    <img src='' alt="foto" />
-                    <input 
-                        type="text" 
-                        placeholder="write a comment..."
-                        value={text}
-                        onChange={(e) => setText(e.target.value)}
-                        required
-                    />
-                    <ButtonSendComment type="submit">
-                        <IconSendComment/>
-                    </ButtonSendComment>
-                </WriteComment>
+                </BoxScroller>  
+                { !isRepost ? 
+                    <WriteComment >
+                        <img src='' alt="foto" />
+                        <input 
+                            type="text" 
+                            placeholder="write a comment..."
+                            value={text}
+                            onChange={(e) => setText(e.target.value)}
+                            required
+                            />
+                        <ButtonSendComment type="submit">
+                            <IconSendComment/>
+                        </ButtonSendComment>
+                    </WriteComment>
+                    : '' 
+                }  
             </CommentsContainer>
         </>
     );
