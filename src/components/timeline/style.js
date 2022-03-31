@@ -6,6 +6,8 @@ export const Container = styled.div`
 
     display: flex;
     flex-direction: column;
+    
+    z-index: 1;
 `;
 
 export const Message = styled.span`

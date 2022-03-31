@@ -113,6 +113,7 @@ export const RepostContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 70px;
 
     cursor: ${props => !props.isRepost ? 'pointer' : 'auto' };
 `
@@ -190,6 +191,10 @@ export const EditingText = styled.textarea`
     }
 `;
 
+export const SuportContainer = styled.div`
+    height: 150px;
+`;
+
 export const LinkContainer = styled.a`
     width: 100%;
     max-width: 100%;
@@ -199,6 +204,8 @@ export const LinkContainer = styled.a`
     border-radius: 11px;
 
     display: flex;
+
+    overflow: hidden;
 `;
 
 export const ImageLink = styled.img`

@@ -18,7 +18,8 @@ import {
     Icons,
     EditingText,
     BackgroundContainer,
-    RepostHeader
+    RepostHeader,
+    SuportContainer
 } from "./style";
 import { Load } from "../timeline/style";
 import Hashtag from "../hashtag";
@@ -42,19 +43,26 @@ import * as api from '../../services/api';
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { IoChatbubblesOutline } from "react-icons/io5";
+import Comments from "../comments";
+
 export default function Post({ post, setHashtagsLists }) {
 
     const { auth } = useAuth();
     const navigate = useNavigate();
+
     const [postLikes, setPostLikes] = useState(); 
+    const [lever, setLever] = useState(false);
+    const [totalComments, setTotalComments] = useState();
     const [totalReposts, setTotalReposts] = useState();
-    const [likeLever, setLikeLever] = useState(false);
     const [user, setUser] = useState({});
     const [showConfirmScreen, setShowConfirmScreen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
     const inputEditText = useRef(null);
     const [newDescription, setNewDescription] = useState(post.description);
+
+    const [commentState, setCommentState] = useState(false)
     const [method, setMethod] = useState();
     
     useEffect(() => {
@@ -72,12 +80,17 @@ export default function Post({ post, setHashtagsLists }) {
         promiseRepost.then(response => {
             setTotalReposts(response.data);
         });
-    }, [likeLever, auth, post.id]);
+
+        const promiseComents = api.getComments(post.id);
+        promiseComents.then((response) => {
+            setTotalComments(response.data.length);
+        })
+    }, [lever, auth, post.id]);
 
     function like() {
         const promise = api.likePost(post.id, auth.id, auth.token);
         promise.then(() => {
-            setLikeLever(!likeLever)
+            setLever(!lever)
         })
     }
 
@@ -190,7 +203,17 @@ export default function Post({ post, setHashtagsLists }) {
         }
     }
 
+    function showComments() {
+        if (commentState) {
+          setCommentState(!commentState)
+        }
+        else {
+          setCommentState(!commentState)
+        }
+      }
+
     return(
+        <>
         <BackgroundContainer > 
             {post.userRepostName ? 
                 <RepostHeader>
@@ -230,9 +253,14 @@ export default function Post({ post, setHashtagsLists }) {
                         </LikeTooltip>}
                     </Icon>
                     <ReactTooltip class="tooltip" place="bottom" type="light" effect="solid" multiline={true}/>
+                    
+                    <RepostContainer>
+                        <IoChatbubblesOutline size={20} color="ffffff" onClick={() => showComments()}/>
+                        <Total> {totalComments} comments</Total>
+                    </RepostContainer>
 
                     <RepostContainer isRepost={post.userRepostName}>
-                        <BiRepost color="#fff" size={25} onClick={() => !post.userRepostName ? changeMessageScreenToRepost() : ''} ></BiRepost>
+                        <BiRepost color="#fff" size={20} onClick={() => !post.userRepostName ? changeMessageScreenToRepost() : ''} ></BiRepost>
                         {totalReposts ? 
                             <Total> {totalReposts[0].count} {totalReposts[0].count > 1 ? 're-posts' : 're-post' }</Total>
                             : 
@@ -272,7 +300,7 @@ export default function Post({ post, setHashtagsLists }) {
                             </ReactHashtag>
                         </Text>
                     )}
-
+                        <SuportContainer>
                     <LinkContainer href={post.link} target="_blank">
 
                         <MainLink>
@@ -292,8 +320,17 @@ export default function Post({ post, setHashtagsLists }) {
                             <ImageLink src={post.imageLink}/>
                         )}
                     </LinkContainer>
+                    </SuportContainer>
                 </Main>
             </Container>
         </BackgroundContainer>
+        <Comments
+            commentState={commentState}
+            postId={post.id}
+            isRepost={post.userRepostName}
+            whoPosted={post.userId}
+        />
+
+        </>
     );
 }
