@@ -81,7 +81,7 @@ function Login() {
           });
         }
 
-        if (error.response.status === 204) {
+        if (error.response.status === 404) {
           setSignInData({
             email: '',
             password: '',
@@ -92,7 +92,7 @@ function Login() {
             title: "OOPS...",
             text: 'Usuário não existente, faça um cadastro, por favor.',
           });
-
+          
           return;
         }
       }
