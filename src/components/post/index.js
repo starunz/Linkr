@@ -2,8 +2,9 @@ import {
     Container, 
     ImageLikeContainer, 
     ImageUser, 
-    TotalLikes,
+    Total,
     LikeTooltip,
+    RepostContainer,
     Main, 
     Title, 
     Text, 
@@ -16,6 +17,8 @@ import {
     Icon,
     Icons,
     EditingText,
+    BackgroundContainer,
+    RepostHeader
 } from "./style";
 import { Load } from "../timeline/style";
 import Hashtag from "../hashtag";
@@ -26,6 +29,7 @@ import { FiHeart } from 'react-icons/fi';
 import { FaHeart } from 'react-icons/fa';
 import { BiEditAlt } from 'react-icons/bi';
 import { AiFillDelete } from 'react-icons/ai';
+import { BiRepost } from 'react-icons/bi';
 
 import ReactHashtag from "@mdnm/react-hashtag";
 import { ThreeDots } from 'react-loader-spinner';
@@ -46,6 +50,7 @@ export default function Post({ post, setHashtagsLists }) {
     const { auth } = useAuth();
     const navigate = useNavigate();
     const [postLikes, setPostLikes] = useState(); 
+    const [totalReposts, setTotalReposts] = useState();
     const [likeLever, setLikeLever] = useState(false);
     const [user, setUser] = useState({});
     const [showConfirmScreen, setShowConfirmScreen] = useState(false);
@@ -56,15 +61,22 @@ export default function Post({ post, setHashtagsLists }) {
 
     const [commentState, setCommentState] = useState(false)
     const [commentsList, setCommentsList] = useState([])
+    const [method, setMethod] = useState();
     
     useEffect(() => {
-        const promise = api.getLikes(post.id, auth.token);
-        promise.then((response) => {
+        const promiseLikes = api.getLikes(post.id, auth.token);
+        promiseLikes.then((response) => {
             setPostLikes(response.data)
         });
-        const promiseTwo = api.getUserData(auth);
-        promiseTwo.then(response => {
+
+        const promiseUser = api.getUserData(auth);
+        promiseUser.then(response => {
             setUser(response.data);
+        });
+
+        const promiseRepost = api.getReposts(post.id, auth.token);
+        promiseRepost.then(response => {
+            setTotalReposts(response.data);
         });
     }, [likeLever, auth, post.id]);
 
@@ -79,6 +91,41 @@ export default function Post({ post, setHashtagsLists }) {
         return <Load><ThreeDots color="#FFFFFF" height={50} width={50} /></Load>
     }
 
+    function changeMessageScreenToDelete(){
+        setShowConfirmScreen(true);
+        setMethod("deletePosts");
+    }
+    
+    function changeMessageScreenToRepost(){
+        setShowConfirmScreen(true);
+        setMethod("repost");
+    }
+
+    function repost(postId) {
+        setIsLoading(true);
+        if(!auth.token) return;
+
+        const body = { 
+            userId: auth.id,
+            userPosted: post.userId,
+            postId: postId
+        }
+        
+        const promise = api.repost(body, auth.token);
+
+        promise.then(() => {
+            window.location.reload();
+        }).catch(() => {
+            setIsLoading(false);
+            setShowConfirmScreen(false);
+            Swal.fire({
+                icon: 'error',
+                title: "OOPS...",
+                text: "Something went wrong! Try again!",
+            });
+        });
+    }
+
     function deletePosts(id) {
         setIsLoading(true);
         if(!auth.token) return;
@@ -87,6 +134,7 @@ export default function Post({ post, setHashtagsLists }) {
         promise.then(() => {
             window.location.reload();
         }).catch(() => {
+            setIsLoading(false);
             setShowConfirmScreen(false);
             Swal.fire({
                 icon: 'error',
@@ -159,52 +207,74 @@ export default function Post({ post, setHashtagsLists }) {
 
     return(
         <>
-        
+        <BackgroundContainer > 
+            {post.userRepostName ? 
+                <RepostHeader>
+                    <BiRepost color="#fff" size={25} ></BiRepost>
+                    <span>Re-posted by <strong>{post.userRepostId === auth.id ? 'You' : post.userRepostName}</strong> </span>
+                </RepostHeader> 
+                :
+                ''
+            }    
             <Container>
                 {showConfirmScreen && (
                     <ConfirmScreen 
                         post={post} 
-                        deletePosts={deletePosts} 
+                        method={method} 
+                        deletePost={deletePosts}
+                        repost={repost}
                         setShow={setShowConfirmScreen}
                         isLoading={isLoading}
                     />
                 )}
                 <ImageLikeContainer>
                     <ImageUser src={post.photoUrl} alt={"user Photo"}/>
-                    <Icon>
+                    <Icon isRepost={post.userRepostName}>
                     {postLikes[0].isLiked ? 
-                        <LikeTooltip>
-                            <a data-tip={`${postLikes[0].whoLiked}`}>
-                                    <FaHeart color="#AC0000" size={20} onClick={() => like()} /> 
-                                    <TotalLikes>{postLikes[0].count} likes</TotalLikes>
+                        <LikeTooltip >
+                                <a data-tip={ !post.userRepostName ? `${postLikes[0].whoLiked}` : ''}>
+                                    <FaHeart color="#AC0000" size={20} onClick={() => !post.userRepostName ? like() : ''} /> 
+                                    <Total>{postLikes[0].count} likes</Total>
                             </a>
                         </LikeTooltip>
                         :
                         <LikeTooltip>
-                            <a data-tip={`${postLikes[0].whoLiked}`}>
-                                    <FiHeart color="#fff" size={20} onClick={() => like()}/>
-                                    <TotalLikes>{postLikes[0].count} likes</TotalLikes>
+                                <a data-tip={ !post.userRepostName ? `${postLikes[0].whoLiked}` : ''}>
+                                    <FiHeart color="#fff" size={20} onClick={() => !post.userRepostName ? like() : ''}/>
+                                    <Total>{postLikes[0].count} likes</Total>
                             </a> 
                         </LikeTooltip>}
                     </Icon>
                     <ReactTooltip class="tooltip" place="bottom" type="light" effect="solid" multiline={true}/>
-
                     
-                    <IoChatbubblesOutline size={20} color="ffffff" onClick={() => showComments()}/>
-                    <TotalLikes>comments</TotalLikes>
+                    <RepostContainer>
+                        <IoChatbubblesOutline size={20} color="ffffff" onClick={() => showComments()}/>
+                        <Total>comments</Total>
+                    </RepostContainer>
+
+                    <RepostContainer isRepost={post.userRepostName}>
+                        <BiRepost color="#fff" size={25} onClick={() => !post.userRepostName ? changeMessageScreenToRepost() : ''} ></BiRepost>
+                        {totalReposts ? 
+                            <Total> {totalReposts[0].count} {totalReposts[0].count > 1 ? 're-posts' : 're-post' }</Total>
+                            : 
+                            ''
+                        }
+                    </RepostContainer>    
                 
                 </ImageLikeContainer>
 
                 <Main>
                     <Title >
                         <span onClick={() => navigate(`/user/${post.userId}`)}>{post.author}</span>
-                        {post.author === user.userName && (
-                            <Icons>
-                                <Icon>{isEditing? <BiEditAlt onClick={() => setIsEditing(false)} /> : <BiEditAlt onClick={editPost} />}</Icon>
-                                <Icon><AiFillDelete onClick={() => setShowConfirmScreen(true)}/></Icon>
-                            </Icons>
-                        )}
+                        { !post.userRepostName ? 
+                            post.author === user.userName && (
+                                <Icons>
+                                    <Icon>{isEditing? <BiEditAlt onClick={() => setIsEditing(false)} /> : <BiEditAlt onClick={editPost} />}</Icon>
+                                    <Icon><AiFillDelete onClick={() => changeMessageScreenToDelete()}/></Icon>
+                                </Icons>
+                        ) : ''}
                     </Title>
+
                     {isEditing? (
                         <EditingText 
                             ref={inputEditText} 
@@ -245,12 +315,13 @@ export default function Post({ post, setHashtagsLists }) {
                     </LinkContainer>
                 </Main>
             </Container>
+        </BackgroundContainer>
+        <Comments
+            commentState={commentState}
+            commentsList={commentsList}
+            setCommentsList={setCommentsList}
+        />
 
-            <Comments
-                commentState={commentState}
-                commentsList={commentsList}
-                setCommentsList={setCommentsList}
-            />
         </>
     );
 }

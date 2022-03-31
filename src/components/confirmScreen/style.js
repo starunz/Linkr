@@ -64,6 +64,10 @@ export const ButtonAccept = styled.button`
     width: 134px;
     height: 37px;
 
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+
     background: #1877F2;
     border-radius: 5px;
     ${props => props.disabled && 'opacity: 0.5;'}
@@ -74,6 +78,10 @@ export const ButtonAccept = styled.button`
 export const ButtonRecuse = styled.button`
     width: 134px;
     height: 37px;
+
+    font-size: 18px;
+    font-weight: 700;
+    color: #1877F2;
 
     background: #FFFFFF;
     border-radius: 5px;

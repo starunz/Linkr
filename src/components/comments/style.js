@@ -10,12 +10,13 @@ const CommentsContainer = styled.div`
     margin: 0 auto;
 
     position: relative;
-    top: -35px;
+    top: -45px;
 
     border-radius: 16px;
 
     background-color: #1E1E1E;
-;
+
+    z-index: -1;
     @media (max-width: 635px) {
         width: 100%;
     }
@@ -23,6 +24,8 @@ const CommentsContainer = styled.div`
 
 const BoxScroller = styled.div`
     max-height: 200px;   
+
+    margin-top: 30px;
     overflow-y: auto;
     overflow-x: hidden;
     ::-webkit-scrollbar {

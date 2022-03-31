@@ -96,10 +96,6 @@ export default function UserPage() {
         });
     }, [auth, hashtag, id]);
 
-    if(posts.length === 0) {
-        return <Load><ThreeDots color="#FFFFFF" height={50} width={50} /></Load>
-    }
-
     function followUser(followerId, followingId, token){
         setIsLoadingFollow(true);
         const promise = api.postFollow(followerId, followingId, token);
