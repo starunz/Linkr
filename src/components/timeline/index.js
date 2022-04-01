@@ -27,6 +27,7 @@ export default function Timeline({ setHashtagsLists }) {
             
             promise.then(response => {
                 let posts = response.data;
+                console.log(response.data)
                 setPosts(posts);
                 setIsLoading(false);
             }).catch(error => {
