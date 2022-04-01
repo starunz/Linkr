@@ -51,7 +51,6 @@ function SignUp() {
 
       if (error.response.data === 'username already exists' && error.response.status === 409) {
         setFormData({
-          password: '',
           username: ''
         });
 
