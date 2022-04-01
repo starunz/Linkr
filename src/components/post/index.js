@@ -53,8 +53,8 @@ export default function Post({ post, setHashtagsLists }) {
 
     const [postLikes, setPostLikes] = useState(); 
     const [lever, setLever] = useState(false);
-    const [totalComments, setTotalComments] = useState();
-    const [totalReposts, setTotalReposts] = useState();
+    const [totalComments, setTotalComments] = useState(0);
+    const [totalReposts, setTotalReposts] = useState(0);
     const [user, setUser] = useState({});
     const [showConfirmScreen, setShowConfirmScreen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -85,7 +85,7 @@ export default function Post({ post, setHashtagsLists }) {
         promiseComents.then((response) => {
             setTotalComments(response.data.length);
         })
-    }, [lever, auth, post.id]);
+    }, [lever, auth, post.id, totalComments]);
 
     function like() {
         const promise = api.likePost(post.id, auth.id, auth.token);
@@ -325,6 +325,7 @@ export default function Post({ post, setHashtagsLists }) {
             </Container>
         </BackgroundContainer>
         <Comments
+            setTotalComments={setTotalComments}
             commentState={commentState}
             postId={post.id}
             isRepost={post.userRepostName}

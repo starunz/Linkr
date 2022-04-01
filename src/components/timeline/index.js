@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Publish from "../publish";
 import { Container, Load, Message } from "./style";
 import * as api from '../../services/api';
@@ -15,6 +15,9 @@ export default function Timeline({ setHashtagsLists }) {
     const { hashtag } = useParams();
     const { auth } = useAuth();
     const [followingsUserLoged, setFollowingsUserLoged] = useState([]);
+    const [scrollRadio, setScrollRadio] = useState (null);
+    const scrollObserve = useRef();
+    let hasMorePosts = true;
 
     useEffect(() => {
         if(auth.token) {
@@ -26,7 +29,7 @@ export default function Timeline({ setHashtagsLists }) {
             promise = api.getPosts("", auth.token);
             
             promise.then(response => {
-                let posts = response.data;
+                let posts = response.data.limitPosts;
                 setPosts(posts);
                 setIsLoading(false);
             }).catch(error => {
@@ -50,8 +53,40 @@ export default function Timeline({ setHashtagsLists }) {
                 text: "An error occured while trying to fetch the trending hashtags, please refresh the page",
             });
         });
-
+        
     }, [hashtag, auth]);
+    
+    const intersectionObserve = new IntersectionObserver( (entries) => {
+        const radio = entries[0].intersectionRatio;
+        setScrollRadio(radio);
+    } );
+
+    useEffect( () => {
+        intersectionObserve.observe(scrollObserve.current);
+
+        return () => {
+            intersectionObserve.disconnect();
+        }
+    }, []);
+
+    const lastIndex = () => {
+        const lastItem = posts.length;
+        return lastItem;
+    };
+        
+    useEffect(() => {
+        if (scrollRadio > 0 && hasMorePosts) {
+        api.getPosts(hashtag? hashtag : '', auth.token, lastIndex() )
+        .then((res) => {
+            const newPosts = [...posts, ...res.data.limitPosts];
+            setPosts(newPosts);
+            setIsLoading(false);
+            hasMorePosts = res.data.hasMore;
+        });
+    }  
+
+    },[scrollRadio]);
+
 
     return(
         <Container>
@@ -68,6 +103,7 @@ export default function Timeline({ setHashtagsLists }) {
             ) : (
                 posts.map((post, i) => <Post key={i} post={post} setHashtagsLists={setHashtagsLists} />)
             )}
+            <div ref={scrollObserve}></div>
         </Container>
     );
 }
