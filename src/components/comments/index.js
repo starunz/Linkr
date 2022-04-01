@@ -10,7 +10,7 @@ import {
     WriteComment,
     ButtonSendComment,
     IconSendComment
- } from "./style";
+} from "./style";
 
 import * as api from '../../services/api';
 

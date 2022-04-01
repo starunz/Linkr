@@ -66,6 +66,8 @@ const Comment = styled.div`
         height: 39px;
         border-radius: 50%;
         margin: 0 6px 0 33px;
+
+        object-fit: cover;
     }
     h4 {
         color: #F3F3F3;
@@ -136,6 +138,8 @@ const WriteComment = styled.form`
         height: 39px;
         border-radius: 50%;
         margin-right: 18px;
+
+        object-fit: cover;
     }
     @media (max-width: 635px) {
         width: 95%;
