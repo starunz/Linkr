@@ -33,7 +33,6 @@ function SignUp() {
       navigate("/");
 
     } catch (error) {
-
       setIsLoading(false);
       if (error.response.status === 422) {
         setFormData({
@@ -45,6 +44,21 @@ function SignUp() {
             icon: 'error',
             title: "OOPS...",
             text: 'Todos os campos precisam ser preenchidos corretamente, confira seus dados, por favor.',
+        });
+
+        return;
+      }
+
+      if (error.response.data === 'username already exists' && error.response.status === 409) {
+        setFormData({
+          password: '',
+          username: ''
+        });
+
+        Swal.fire({
+          icon: 'error',
+          title: "OOPS...",
+          text: 'Nome de usuário já existente, escolha outro, por favor.',
         });
 
         return;
