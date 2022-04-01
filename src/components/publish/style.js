@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
     width: 611px;
     max-width: 100%;
-    height: 209px;
+    min-height: 209px;
 
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -84,11 +84,12 @@ export const Form = styled.form`
 
     textarea {
         width: 100%;
-        height: 66px;
+        min-height: 66px;
 
         background: #EFEFEF;
         border-radius: 5px;
         border: none;
+        resize: vertical;
 
         &::placeholder {
             padding-left: 13px;

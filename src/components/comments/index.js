@@ -16,7 +16,7 @@ import * as api from '../../services/api';
 
 import Swal from "sweetalert2";
 
-export default function Comments({commentState, postId, isRepost, whoPosted}) {
+export default function Comments({commentState, postId, isRepost, whoPosted, setTotalComments}) {
     
     const { auth } = useAuth();
     const [text, setText] = useState("");
@@ -64,6 +64,10 @@ export default function Comments({commentState, postId, isRepost, whoPosted}) {
         const promise = api.createComment(postId, body,auth.token);
 
         promise.then(() => {
+            const promiseComents = api.getComments(postId);
+            promiseComents.then((response) => {
+                setTotalComments(response.data.length);
+            })
             setLever(!lever);
             setText('');
         }).catch(() => {

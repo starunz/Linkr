@@ -32,12 +32,13 @@ const publishPost = ({token, publishData, id}) => {
     return promise;
 }
 
-const getPosts = (hashtag, token) => {
+const getPosts = (hashtag, token, lastIndex) => {
+    if (lastIndex <= 0 || lastIndex === undefined) lastIndex = 0;
     let promise = null;
     if(hashtag)
-    promise = api.get(`/posts?hashtag=${hashtag}`, config(token));
+    promise = api.get(`/posts?hashtag=${hashtag}&lastIndex=${lastIndex}`, config(token));
     else
-    promise = api.get('/posts', config(token));
+    promise = api.get(`/posts?lastIndex=${lastIndex}`, config(token));
     return promise;
 }
 
