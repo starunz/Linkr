@@ -1,70 +1,72 @@
-# Getting Started with Create React App
+<h1 >  Linkr  🔗  &nbsp  </h1><br>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+  <div align="center">
+<a href="https://linkr-drab.vercel.app/">
+  <img  width="80" height="80" src="./public/icon/linkr.png">
+    </a>
+    <p align="center"><a  href="https://linkr-drab.vercel.app/">linkr - vercel</a></p>
 
-## Available Scripts
+</div>
 
-In the project directory, you can run:
+## About
 
-### `npm start`
+Linkr is a link-sharing social network! Enjoy and share those awesome materials you find about development with very cool hashtags <3
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<div align="center">
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+![GitHub Org's stars](https://img.shields.io/github/stars/lusntgo?style=social)
 
-### `npm test`
+</div>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## :hammer: Features
 
-### `npm run build`
+:ballot_box_with_check: `Sign Up` - Receives username, avatar, email and password.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+:ballot_box_with_check: `Login` - Receives email and password.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+:ballot_box_with_check: `Search` - you can search for users or hashtags
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+:ballot_box_with_check: `Follow and Unfollow` - other users and see other users posts on their personal pages
 
-### `npm run eject`
+:ballot_box_with_check: `Timeline` - you can publish a post and see in your timeline yours posts and posts from users you follow
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+:ballot_box_with_check: `Posts` - posts load progressively as the page scrolls, you can like, comment, repost, edit and delete a post.
+## :woman_technologist: Technologies
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<p align="center">
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" />
+<img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"/>
+<img src="https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white" />
+<img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" />
+<img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" />
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+</p>
+<br>  
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## :tada: How to run
 
-## Learn More
+```bash
+# Clone this repo
+$ git clone <https://github.com/starunz/Linkr.git>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# #change to project directory
+$ cd Linkr
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# install the dependencies
+$ npm or yarn install
 
-### Code Splitting
+# to run in dev
+$ npm start
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# The server will start on port:5000 - go to <http://localhost:5000>
+```
 
-### Analyzing the Bundle Size
+## :sparkles: Authors
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+| [<img src="https://avatars.githubusercontent.com/starunz" width=115><br><sub>Bruna Souza</sub>](https://github.com/starunz) |  [<img src="https://avatars.githubusercontent.com/luis-garbelotti" width=115><br><sub>Luis Garbelotti</sub>](https://github.com/luis-garbelotti) |  [<img src="https://avatars.githubusercontent.com/lusntgo" width=115><br><sub>Luiza Santiago</sub></sub>](https://github.com/lusntgo) | 
+| :---: | :---: | :---: |
+| [<img src="https://avatars.githubusercontent.com/Mateusr337" width=115><br><sub>Mateus Cruz Rossetto</sub>](https://github.com/Mateusr337) |  [<img src="https://avatars.githubusercontent.com/thalesor" width=115><br><sub>Thales de Oliveira Ruano</sub>](https://github.com/thalesor) 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
