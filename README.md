@@ -8,7 +8,7 @@
 
 </div>
 
-## About
+##  :link: About
 
 Linkr is a link-sharing social network! Enjoy and share those awesome materials you find about development with very cool hashtags <3
 
@@ -63,10 +63,7 @@ $ npm start
 
 ## :sparkles: Authors
 
-
-| [<img src="https://avatars.githubusercontent.com/starunz" width=115><br><sub>Bruna Souza</sub>](https://github.com/starunz) |  [<img src="https://avatars.githubusercontent.com/luis-garbelotti" width=115><br><sub>Luis Garbelotti</sub>](https://github.com/luis-garbelotti) |  [<img src="https://avatars.githubusercontent.com/lusntgo" width=115><br><sub>Luiza Santiago</sub></sub>](https://github.com/lusntgo) | 
-| :---: | :---: | :---: |
-| [<img src="https://avatars.githubusercontent.com/Mateusr337" width=115><br><sub>Mateus Cruz Rossetto</sub>](https://github.com/Mateusr337) |  [<img src="https://avatars.githubusercontent.com/thalesor" width=115><br><sub>Thales de Oliveira Ruano</sub>](https://github.com/thalesor) 
-
+| [<img src="https://avatars.githubusercontent.com/starunz" width=115><br><sub>Bruna Souza</sub>](https://github.com/starunz) |  [<img src="https://avatars.githubusercontent.com/luis-garbelotti" width=115><br><sub>Luis Garbelotti</sub>](https://github.com/luis-garbelotti) |  [<img src="https://avatars.githubusercontent.com/lusntgo" width=115><br><sub>Luiza Santiago</sub></sub>](https://github.com/lusntgo) |  [<img src="https://avatars.githubusercontent.com/Mateusr337" width=115><br><sub>Mateus Cruz Rossetto</sub>](https://github.com/Mateusr337) |  [<img src="https://avatars.githubusercontent.com/thalesor" width=115><br><sub>Thales de Oliveira Ruano</sub>](https://github.com/thalesor) 
+| :---: | :---: | :---: | :---: | :---: |
 
 
