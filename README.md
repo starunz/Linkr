@@ -47,7 +47,7 @@ Linkr is a link-sharing social network! Enjoy and share those awesome materials 
 
 ```bash
 # Clone this repo
-$ git clone <https://github.com/starunz/Linkr.git>
+$ git clone https://github.com/starunz/Linkr.git
 
 # Clone the back-end repository and follow the instructions to run
 $ git clone https://github.com/starunz/Linkr-Backend.git
